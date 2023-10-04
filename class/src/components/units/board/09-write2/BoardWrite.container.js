@@ -36,18 +36,21 @@ export default function BoardWrite(props) {
 
   // 게시물 수정
   const onClickUpdate = async () => {
+    const myVariables = {
+      // router.query.number 은 주소창에서 가져온 값 -> 문자열
+      // 그래서 이걸 숫자로 바꿔줘야 함 (Number(router.query.number)
+      number: Number(router.query.number),
+    };
+    // 각 값이 있을 경우만 게시물 수정
+    if (writer) myVariables.writer = writer;
+    if (title) myVariables.title = title;
+    if (contents) myVariables.contents = contents;
+
     // 여기서 수정하기 하자!!
     const result = await updateBoard({
-      variables: {
-        // router.query.number 은 주소창에서 가져온 값 -> 문자열
-        // 그래서 이걸 숫자로 바꿔줘야 함 (Number(router.query.number)
-        number: Number(router.query.number),
-        writer,
-        title,
-        contents,
-      },
+      variables: myVariables,
     });
-    router.push(`/section09/09-03-boards/${result.data.updateBoard.number}`);
+    router.push(`/section09/09-04-boards/${result.data.updateBoard.number}`);
   };
 
   const onChangeWriter = (e) => {
