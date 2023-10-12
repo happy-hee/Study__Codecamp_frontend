@@ -129,7 +129,7 @@ export default function BoardNew(props) {
         boardId: router.query.boardId,
       };
 
-      // 각 값이 있을 경우만 게시물 수정
+      // 각 값이 있을 경우만 게시글 수정
       if (title) updateVariables.updateBoardInput.title = title;
       if (contents) updateVariables.updateBoardInput.contents = contents;
 
