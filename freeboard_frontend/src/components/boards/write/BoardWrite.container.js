@@ -27,11 +27,17 @@ export default function BoardNew(props) {
   const [errorPassword, setErrorPassword] = useState(""); //비밀번호
   const [errorTitle, setErrorTitle] = useState(""); // 제목
   const [errorContents, setErrorContents] = useState(""); //내용
+  const [isActive, setIsActive] = useState(false);
 
   // 데이터 저장
   function onChangeWriter(e) {
     // 이름
     setWriter(e.target.value);
+    if (e.target.value && password && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     if (e.target.value !== "") {
       setErrorWriter("");
     }
@@ -39,6 +45,11 @@ export default function BoardNew(props) {
   function onChangePassword(e) {
     //비밀번호
     setPassword(e.target.value);
+    if (e.target.value && writer && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     if (e.target.value !== "") {
       setErrorPassword("");
     }
@@ -46,6 +57,11 @@ export default function BoardNew(props) {
   function onChangeTitle(e) {
     //제목
     setTitle(e.target.value);
+    if (e.target.value && writer && password && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     if (e.target.value !== "") {
       setErrorTitle("");
     }
@@ -53,6 +69,11 @@ export default function BoardNew(props) {
   function onChangeContents(e) {
     //내용
     setContents(e.target.value);
+    if (e.target.value && writer && password && title) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     if (e.target.value !== "") {
       setErrorContents("");
     }
@@ -137,6 +158,7 @@ export default function BoardNew(props) {
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       data={data}
+      isActive={isActive}
       isEdit={props.isEdit}
     />
   );
