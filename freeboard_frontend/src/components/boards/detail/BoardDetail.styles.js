@@ -78,6 +78,6 @@ export const Button = styled.button`
 
   :hover {
     background-color: gold;
-    border-color: white;
+    border-color: gold;
   }
 `;
