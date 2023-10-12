@@ -13,5 +13,10 @@ export default function BoardDetail() {
     },
   });
 
-  return <BoardDetailUI data={data} />;
+  // 수정하기 페이지로 이동
+  const onClickMoveEdit = () => {
+    router.push(`/boards/${router.query.boardId}/edit`);
+  };
+
+  return <BoardDetailUI data={data} onClickMoveEdit={onClickMoveEdit} />;
 }

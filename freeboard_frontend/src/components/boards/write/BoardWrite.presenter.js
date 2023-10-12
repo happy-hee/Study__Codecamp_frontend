@@ -3,14 +3,16 @@ import * as S from "./BoardWrite.styles";
 export default function BoardWriteUI(props) {
   return (
     <S.Wrapper>
-      <S.Title>게시물 등록</S.Title>
+      <S.Title>게시물 {props.isEdit ? "수정" : "등록"}</S.Title>
       <S.WriterWrapper>
         <S.InputWrapper>
           <S.Label>작성자</S.Label>
           <S.Writer
             type="text"
             placeholder="이름을 입력해주세요."
-            onChange={props.onChangeWriter}></S.Writer>
+            onChange={props.onChangeWriter}
+            defaultValue={props.data?.fetchBoard.writer}
+          ></S.Writer>
           <S.ErrorMessage>{props.errorWriter}</S.ErrorMessage>
         </S.InputWrapper>
         <S.InputWrapper>
@@ -18,7 +20,9 @@ export default function BoardWriteUI(props) {
           <S.Password
             type="password"
             placeholder="비밀번호를  입력해주세요."
-            onChange={props.onChangePassword}></S.Password>
+            onChange={props.onChangePassword}
+            defaultValue={props.data?.fetchBoard.password}
+          ></S.Password>
           <S.ErrorMessage>{props.errorPassword}</S.ErrorMessage>
         </S.InputWrapper>
       </S.WriterWrapper>
@@ -27,15 +31,14 @@ export default function BoardWriteUI(props) {
         <S.Subject
           type="text"
           placeholder="제목을  작성해주세요.."
-          onChange={props.onChangeTitle}></S.Subject>
+          onChange={props.onChangeTitle}
+          defaultValue={props.data?.fetchBoard.title}
+        ></S.Subject>
         <S.ErrorMessage>{props.errorTitle}</S.ErrorMessage>
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>내용</S.Label>
-        <S.Contents
-          placeholder="내용을 작성해주세요."
-          onChange={props.onChangeContents}
-        />
+        <S.Contents placeholder="내용을 작성해주세요." onChange={props.onChangeContents} defaultValue={props.data?.fetchBoard.contents} />
         <S.ErrorMessage>{props.errorContents}</S.ErrorMessage>
       </S.InputWrapper>
       <S.InputWrapper>
@@ -65,7 +68,7 @@ export default function BoardWriteUI(props) {
         <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
       </S.OptionWrapper>
       <S.ButtonWrapper>
-        <S.SubmitButton onClick={props.onClickSubmit}>등록하기</S.SubmitButton>
+        <S.SubmitButton onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}>{props.isEdit ? "수정" : "등록"}하기</S.SubmitButton>
       </S.ButtonWrapper>
     </S.Wrapper>
   );
