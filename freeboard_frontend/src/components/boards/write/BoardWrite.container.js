@@ -121,28 +121,27 @@ export default function BoardNew(props) {
 
   // 게시글 수정
   const onClickUpdate = async () => {
-    // 객체 변수에 담기
-    const updateVariables = {
-      updateBoardInput: {},
-      password: password,
-      boardId: router.query.boardId,
-    };
+    try {
+      // 객체 변수에 담기
+      const updateVariables = {
+        updateBoardInput: {},
+        password: password,
+        boardId: router.query.boardId,
+      };
 
-    // 각 값이 있을 경우만 게시물 수정
-    // title, contents, youtubeUrl, boardAddress, images
-    if (title) updateVariables.updateBoardInput.title = title;
-    if (contents) updateVariables.updateBoardInput.contents = contents;
-    // => 아직 작성자, 제목, 내용 부분만 작업했으므로 다른 것들은 일단 주석 처리
-    // if(youtubeUrl) updateVariables.updateBoardInput.youtubeUrl = youtubeUrl;
-    // if(boardAddress) updateVariables.updateBoardInput.boardAddress = boardAddress;
-    // if(images) updateVariables.updateBoardInput.images = images;
+      // 각 값이 있을 경우만 게시물 수정
+      if (title) updateVariables.updateBoardInput.title = title;
+      if (contents) updateVariables.updateBoardInput.contents = contents;
 
-    const result = await updateBoard({
-      variables: updateVariables,
-    });
+      const result = await updateBoard({
+        variables: updateVariables,
+      });
 
-    // 상세페이지로 이동
-    router.push(`/boards/${result.data.updateBoard._id}`);
+      // 상세페이지로 이동
+      router.push(`/boards/${result.data.updateBoard._id}`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
