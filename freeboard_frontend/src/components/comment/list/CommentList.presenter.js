@@ -26,7 +26,7 @@ export default function CommentListUI(props) {
             <S.EditButton>
               <S.EditButtonIcon src="/images/edit_icon.png" />
             </S.EditButton>
-            <S.DeleteButton>
+            <S.DeleteButton id={el._id} onClick={props.onClickDelete}>
               <S.DeleteButtonIcon src="/images/delete_icon.png" />
             </S.DeleteButton>
           </S.ControlButtonWrapper>

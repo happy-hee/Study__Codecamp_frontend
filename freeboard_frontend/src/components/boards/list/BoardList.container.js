@@ -4,11 +4,7 @@ import BoardListUI from "./BoardList.presenter";
 import { useRouter } from "next/router";
 
 export default function BoardList() {
-  const { data } = useQuery(FETCH_BOARDS, {
-    variables: {
-      page: 133,
-    },
-  });
+  const { data } = useQuery(FETCH_BOARDS);
 
   const router = useRouter();
 
