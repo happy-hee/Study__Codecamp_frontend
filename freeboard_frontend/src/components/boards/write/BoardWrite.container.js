@@ -1,18 +1,11 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 
 export default function BoardNew(props) {
   const router = useRouter();
-
-  // API 요청 후 받아온 데이터를 data 에 넣어준다.
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: {
-      boardId: router.query.boardId,
-    },
-  });
 
   // 데이터 State
   const [writer, setWriter] = useState(""); // 이름
@@ -121,20 +114,39 @@ export default function BoardNew(props) {
 
   // 게시글 수정
   const onClickUpdate = async () => {
+    // if~else 문으로 작성하게 되면 코드가 너무 길어지므로
+    // return을 사용해서 자신을 감싼 함수(onClickUpdate)를 종료해준다.
+
+    // return 의 기능 : 종료하고 값을 반환해줘
+    // 1. 함수를 종료
+    // 2. 값을 반환 (return 뒤에 작성한 값)
+    // => 아래쪽이 실행이 안되도록 해준다.
+
+    //검증
+    if (!title && !contents) {
+      alert("수정한 내용이 없습니다.");
+      return;
+    }
+
+    if (!password) {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    }
+
+    const updateBoardInput = {};
+
+    // 각 값이 있을 경우만 게시글 수정
+    if (title) updateVariables.title = title;
+    if (contents) updateVariables.contents = contents;
+
     try {
       // 객체 변수에 담기
-      const updateVariables = {
-        updateBoardInput: {},
-        password: password,
-        boardId: router.query.boardId,
-      };
-
-      // 각 값이 있을 경우만 게시글 수정
-      if (title) updateVariables.updateBoardInput.title = title;
-      if (contents) updateVariables.updateBoardInput.contents = contents;
-
       const result = await updateBoard({
-        variables: updateVariables,
+        variables: {
+          updateBoardInput,
+          password,
+          boardId: router.query.boardId,
+        },
       });
 
       // 상세페이지로 이동
@@ -156,7 +168,9 @@ export default function BoardNew(props) {
       errorContents={errorContents}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      data={data}
+      // BoardNewPage 에서는 props로 data를 넘겨주고 있지 않음.
+      // 그러므로 등록 페이지의 경우 data가 undefined가 된다.
+      data={props.data}
       isActive={isActive}
       isEdit={props.isEdit}
     />

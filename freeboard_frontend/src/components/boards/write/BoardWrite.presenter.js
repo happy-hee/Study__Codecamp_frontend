@@ -12,7 +12,7 @@ export default function BoardWriteUI(props) {
             placeholder="이름을 입력해주세요."
             onChange={props.onChangeWriter}
             defaultValue={props.data?.fetchBoard.writer}
-            disabled={props.isEdit ? true : false}
+            readOnly={props.data?.fetchBoard.writer ? true : false}
           ></S.Writer>
           <S.ErrorMessage>{props.errorWriter}</S.ErrorMessage>
         </S.InputWrapper>
@@ -69,7 +69,7 @@ export default function BoardWriteUI(props) {
         <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
       </S.OptionWrapper>
       <S.ButtonWrapper>
-        <S.SubmitButton onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} isActive={props.isActive}>
+        <S.SubmitButton onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} isActive={props.isEdit ? true : props.isActive}>
           {props.isEdit ? "수정하기" : "등록하기"}
         </S.SubmitButton>
       </S.ButtonWrapper>
