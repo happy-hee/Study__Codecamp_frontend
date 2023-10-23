@@ -2,14 +2,15 @@ import { useQuery } from "@apollo/client";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import BoardListUI from "./BoardList.presenter";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 
 export default function BoardList() {
   const { data } = useQuery(FETCH_BOARDS);
 
   const router = useRouter();
 
-  const onClickMoteToBoardDetail = (e) => {
-    router.push(`/boards/${e.target.id}`);
+  const onClickMoteToBoardDetail = (e: MouseEvent<HTMLDivElement>) => {
+    router.push(`/boards/${e.currentTarget.id}`);
   };
 
   const onClickMoteToBoardNew = () => {

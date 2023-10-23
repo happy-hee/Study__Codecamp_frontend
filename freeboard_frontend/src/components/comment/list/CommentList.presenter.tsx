@@ -3,11 +3,12 @@
  */
 import { getDate } from "../../../../src/commons/libraries/utils";
 import * as S from "./CommentList.styles";
+import { ICommentListUIProps } from "./CommentList.types";
 
-export default function CommentListUI(props) {
+export default function CommentListUI(props: ICommentListUIProps) {
   return (
     <S.Wrapper>
-      {props.data?.fetchBoardComments.map((el) => (
+      {props.data?.fetchBoardComments.map((el: any) => (
         <S.List key={el._id}>
           {/* 프로필 아이콘 */}
           <S.ProfileIcon src="/images/profile_icon.png" />

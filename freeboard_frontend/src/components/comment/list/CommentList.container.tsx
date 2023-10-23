@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import CommentListUI from "./CommentList.presenter";
 import { FETCH_BOARD_COMMENTS, DELETE_BOARD_COMMENT } from "./CommentList.queries";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 
 export default function CommentLlist() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function CommentLlist() {
 
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
-  const onClickDelete = async (e) => {
+  const onClickDelete = async (e: MouseEvent<HTMLButtonElement>) => {
     const password = prompt("비밀번호를 입력해주세요.");
     const boardCommentId = e.currentTarget.id;
 

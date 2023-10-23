@@ -1,7 +1,8 @@
 import * as S from "./BoardList.styles";
 import { getDate } from "../../../../src/commons/libraries/utils";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <S.Wrapper>
       <S.TableTop>
@@ -13,7 +14,7 @@ export default function BoardListUI(props) {
         </S.Row>
       </S.TableTop>
       <S.TableBottom>
-        {props.data?.fetchBoards.map((el) => (
+        {props.data?.fetchBoards.map((el: any) => (
           <S.Row key={el._id}>
             {/* ID */}
             <S.ColumnBasic>{String(el._id).slice(-4).toUpperCase()}</S.ColumnBasic>

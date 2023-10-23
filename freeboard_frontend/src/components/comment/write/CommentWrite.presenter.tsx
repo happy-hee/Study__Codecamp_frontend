@@ -2,8 +2,9 @@
  * 댓글 작성 Presenter
  */
 import * as S from "./CommentWrite.styles";
+import { ICommentNewUIProps } from "./CommentWrite.types";
 
-export default function CommentNewUI(props) {
+export default function CommentNewUI(props: ICommentNewUIProps) {
   return (
     <S.Wrapper>
       <S.Title>댓글</S.Title>

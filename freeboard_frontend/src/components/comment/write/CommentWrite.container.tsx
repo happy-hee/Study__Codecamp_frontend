@@ -1,7 +1,7 @@
 /**
  * 댓글 작성 Container
  */
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import CommentNewUI from "./CommentWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -14,21 +14,21 @@ export default function CommentNew() {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState("");
   // 댓글 등록 Mutation
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
 
   // 데이터 저장
-  function onChangeWriter(e) {
+  function onChangeWriter(e: ChangeEvent<HTMLInputElement>) {
     setWriter(e.target.value);
   }
-  function onChangePassword(e) {
+  function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
   }
-  function onChangeContents(e) {
+  function onChangeContents(e: ChangeEvent<HTMLTextAreaElement>) {
     setContents(e.target.value);
   }
-  function onChangeRating(e) {
+  function onChangeRating(e: ChangeEvent<HTMLInputElement>) {
     setRating(e.target.value);
   }
 
@@ -67,7 +67,7 @@ export default function CommentNew() {
         // 게시글 상세페이지로 이동
         router.push(`/boards/${router.query.boardId}`);
       } catch (error) {
-        alert(error.messate);
+        // alert(error.messate);
       }
     }
   };
