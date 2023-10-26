@@ -4,6 +4,7 @@
 import { useRouter } from "next/router";
 import BoardWrite from "../../../../src/components/boards/write/BoardWrite.container";
 import { gql, useQuery } from "@apollo/client";
+import { IQuery, IQueryFetchBoardArgs } from "../../../../src/commons/types/generated/types";
 
 // 등록하기에서 FETCH_BOARD를 할 필요가 없기 때문에
 // BoardWrite.container.js 에서 FETCH 하지 않고,
@@ -23,9 +24,9 @@ export const FETCH_BOARD = gql`
 export default function BoardEditPage() {
   const router = useRouter();
 
-  const { data } = useQuery(FETCH_BOARD, {
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
-      boardId: router.query.boardId,
+      boardId: String(router.query.boardId),
     },
   });
 

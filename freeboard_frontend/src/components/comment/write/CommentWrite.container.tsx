@@ -6,6 +6,7 @@ import CommentNewUI from "./CommentWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD_COMMENT } from "./CommentWrite.queries";
+import { IMutation, IMutationCreateBoardCommentArgs } from "../../../commons/types/generated/types";
 
 export default function CommentNew() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function CommentNew() {
   const [contents, setContents] = useState("");
   const [rating, setRating] = useState("");
   // 댓글 등록 Mutation
-  const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+  const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
 
   // 데이터 저장
   function onChangeWriter(e: ChangeEvent<HTMLInputElement>) {
@@ -56,9 +57,9 @@ export default function CommentNew() {
               writer,
               password,
               contents,
-              rating,
+              rating: Number(rating),
             },
-            boardId: router.query.boardId,
+            boardId: String(router.query.boardId),
           },
         });
 

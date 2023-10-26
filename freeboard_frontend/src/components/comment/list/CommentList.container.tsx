@@ -6,12 +6,13 @@ import CommentListUI from "./CommentList.presenter";
 import { FETCH_BOARD_COMMENTS, DELETE_BOARD_COMMENT } from "./CommentList.queries";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
+import { IQuery, IQueryFetchBoardCommentsArgs } from "../../../commons/types/generated/types";
 
 export default function CommentLlist() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+  const { data } = useQuery<Pick<IQuery, "fetchBoardComments">, IQueryFetchBoardCommentsArgs>(FETCH_BOARD_COMMENTS, {
     variables: {
-      boardId: router.query.boardId,
+      boardId: String(router.query.boardId),
     },
   });
 

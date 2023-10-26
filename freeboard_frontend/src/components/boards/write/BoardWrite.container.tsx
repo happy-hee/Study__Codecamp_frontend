@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps, IMyVariables } from "./BoardWrite.types";
+import { IMutation, IBoard, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "../../../commons/types/generated/types";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -13,8 +14,8 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [password, setPassword] = useState(""); //비밀번호
   const [title, setTitle] = useState(""); // 제목
   const [contents, setContents] = useState(""); //내용
-  const [createBoard] = useMutation(CREATE_BOARD); // 게시글 등록 Mutation
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD); // 게시글 등록 Mutation
+  const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
   // 에러메세지
   const [errorWriter, setErrorWriter] = useState(""); // 이름
@@ -106,7 +107,7 @@ export default function BoardNew(props: IBoardWriteProps) {
 
         alert("등록되었습니다.");
         // 상세페이지로 이동
-        router.push(`/boards/${result.data.createBoard._id}`);
+        router.push(`/boards/${result.data?.createBoard._id}`);
       } catch (e) {
         if (typeof e === "string") {
           alert(e.toUpperCase());
@@ -154,7 +155,7 @@ export default function BoardNew(props: IBoardWriteProps) {
       });
 
       // 상세페이지로 이동
-      router.push(`/boards/${result.data.updateBoard._id}`);
+      router.push(`/boards/${result.data?.updateBoard._id}`);
     } catch (error) {
       // alert(error.message);
     }
