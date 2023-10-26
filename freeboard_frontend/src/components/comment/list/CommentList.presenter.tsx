@@ -8,7 +8,7 @@ import { ICommentListUIProps } from "./CommentList.types";
 export default function CommentListUI(props: ICommentListUIProps) {
   return (
     <S.Wrapper>
-      {props.data?.fetchBoardComments.map((el: any) => (
+      {props.data?.fetchBoardComments.map((el) => (
         <S.List key={el._id}>
           {/* 프로필 아이콘 */}
           <S.ProfileIcon src="/images/profile_icon.png" />

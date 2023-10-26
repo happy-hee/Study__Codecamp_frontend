@@ -1,9 +1,9 @@
 /**
  * interface 모음
  */
-import { MouseEvent } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 export interface IBoardDetailUIProps {
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
   isEdit?: boolean;
-  onClickMoveEdit: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClickMoveEdit: () => void;
 }

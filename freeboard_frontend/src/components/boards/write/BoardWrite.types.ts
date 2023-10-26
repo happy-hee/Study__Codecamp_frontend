@@ -1,12 +1,12 @@
 /**
  * interface 모음
  */
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
-  isActive?: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IMyVariables {
@@ -21,13 +21,13 @@ export interface IMyVariables {
 export interface IBoardWriteUIProps {
   isEdit: boolean;
   isActive: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
   onChangeWriter: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickSubmit: () => void;
+  onClickUpdate: () => void;
   errorWriter: string;
   errorPassword: string;
   errorTitle: string;

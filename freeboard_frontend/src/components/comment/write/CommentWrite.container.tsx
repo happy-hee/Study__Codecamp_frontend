@@ -51,6 +51,12 @@ export default function CommentNew() {
 
     if (writer && password && contents && rating) {
       try {
+        // boardId가 string이 아닐 경우 대비 얼럿
+        if (typeof router.query.boardId !== "string") {
+          alert("시스템에 문제가 있습니다.");
+          return;
+        }
+
         await createBoardComment({
           variables: {
             createBoardCommentInput: {
@@ -59,7 +65,7 @@ export default function CommentNew() {
               contents,
               rating: Number(rating),
             },
-            boardId: String(router.query.boardId),
+            boardId: router.query.boardId,
           },
         });
 
@@ -68,7 +74,9 @@ export default function CommentNew() {
         // 게시글 상세페이지로 이동
         router.push(`/boards/${router.query.boardId}`);
       } catch (error) {
-        // alert(error.messate);
+        if (error instanceof Error) {
+          alert(error.message);
+        }
       }
     }
   };

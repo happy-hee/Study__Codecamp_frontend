@@ -14,7 +14,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
         </S.Row>
       </S.TableTop>
       <S.TableBottom>
-        {props.data?.fetchBoards.map((el: any) => (
+        {props.data?.fetchBoards.map((el) => (
           <S.Row key={el._id}>
             {/* ID */}
             <S.ColumnBasic>{String(el._id).slice(-4).toUpperCase()}</S.ColumnBasic>

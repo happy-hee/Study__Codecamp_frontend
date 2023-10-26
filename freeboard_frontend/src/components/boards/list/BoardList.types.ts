@@ -2,8 +2,9 @@
  * interface 모음
  */
 import { MouseEvent } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 export interface IBoardListUIProps {
-  data?: any;
+  data?: Pick<IQuery, "fetchBoards">;
   onClickMoteToBoardDetail: (e: MouseEvent<HTMLDivElement>) => void;
-  onClickMoteToBoardNew: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClickMoteToBoardNew: () => void;
 }

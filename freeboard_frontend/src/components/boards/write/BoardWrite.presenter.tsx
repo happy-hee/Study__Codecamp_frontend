@@ -8,23 +8,20 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       <S.WriterWrapper>
         <S.InputWrapper>
           <S.Label>작성자</S.Label>
+          {/* writer가 undefined나 null 이면 빈 문자열 넣기(?? 사용) */}
+          {/* readOnly 부분에 boolean값이 들어가야 하므로 !!를 사용해서 명시적으로 표현 */}
           <S.Writer
             type="text"
             placeholder="이름을 입력해주세요."
             onChange={props.onChangeWriter}
-            defaultValue={props.data?.fetchBoard.writer}
-            readOnly={props.data?.fetchBoard.writer ? true : false}
+            defaultValue={props.data?.fetchBoard.writer ?? ""}
+            readOnly={!!props.data?.fetchBoard.writer}
           ></S.Writer>
           <S.ErrorMessage>{props.errorWriter}</S.ErrorMessage>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>비밀번호</S.Label>
-          <S.Password
-            type="password"
-            placeholder="비밀번호를  입력해주세요."
-            onChange={props.onChangePassword}
-            defaultValue={props.data?.fetchBoard.password}
-          ></S.Password>
+          <S.Password type="password" placeholder="비밀번호를  입력해주세요." onChange={props.onChangePassword}></S.Password>
           <S.ErrorMessage>{props.errorPassword}</S.ErrorMessage>
         </S.InputWrapper>
       </S.WriterWrapper>

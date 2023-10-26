@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
-import { IBoardWriteProps, IMyVariables } from "./BoardWrite.types";
-import { IMutation, IBoard, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "../../../commons/types/generated/types";
+import { IBoardWriteProps } from "./BoardWrite.types";
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../commons/types/generated/types";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -138,26 +138,36 @@ export default function BoardNew(props: IBoardWriteProps) {
       alert("비밀번호를 입력해주세요.");
       return;
     }
-    try {
-      const myVariables: IMyVariables = {
-        updateBoardInput: {},
-        password,
-        boardId: String(router.query.boardId),
-      };
 
-      // 각 값이 있을 경우만 게시글 수정
-      if (title) myVariables.updateBoardInput.title = title;
-      if (contents) myVariables.updateBoardInput.contents = contents;
+    const updateBoardInput: IUpdateBoardInput = {};
+
+    // 각 값이 있을 경우만 게시글 수정
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+
+    try {
+      // boardId가 string이 아닐 경우 대비 얼럿
+      if (typeof router.query.boardId !== "string") {
+        alert("시스템에 문제가 있습니다.");
+        return;
+      }
 
       // 객체 변수에 담기
       const result = await updateBoard({
-        variables: myVariables,
+        variables: {
+          boardId: router.query.boardId,
+          password,
+          updateBoardInput,
+        },
       });
 
       // 상세페이지로 이동
       router.push(`/boards/${result.data?.updateBoard._id}`);
     } catch (error) {
-      // alert(error.message);
+      // instance란: 원본으로부터 만들어진 것 (error는 Error의 instance 이다)
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   };
 

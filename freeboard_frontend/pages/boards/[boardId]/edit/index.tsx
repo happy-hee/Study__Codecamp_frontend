@@ -24,9 +24,13 @@ export const FETCH_BOARD = gql`
 export default function BoardEditPage() {
   const router = useRouter();
 
+  // boardId가 string이 아닐 경우를 대비 (하지 않으면 variables의 boardId 부분이 빨갛게 뜸)
+  // 그런 경우는 아무것도 보여주지 않는다. (<></>)
+  if (!router || typeof router.query.boardId !== "string") return <></>;
+
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
-      boardId: String(router.query.boardId),
+      boardId: router.query.boardId,
     },
   });
 
