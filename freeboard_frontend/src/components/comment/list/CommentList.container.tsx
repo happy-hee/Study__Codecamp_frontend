@@ -11,10 +11,7 @@ import { IMutation, IMutationDeleteBoardCommentArgs, IQuery, IQueryFetchBoardCom
 export default function CommentLlist() {
   const router = useRouter();
 
-  if (typeof router.query.boardId !== "string") {
-    alert("시스템에 문제가 있습니다.");
-    return;
-  }
+  if (!router || typeof router.query.boardId !== "string") return <></>;
 
   const { data } = useQuery<Pick<IQuery, "fetchBoardComments">, IQueryFetchBoardCommentsArgs>(FETCH_BOARD_COMMENTS, {
     variables: {
