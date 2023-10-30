@@ -3,7 +3,7 @@
  */
 import { ChangeEvent } from "react";
 
-export interface ICommentNewUIProps {
+export interface IBoardCommentNewUIProps {
   onChangeWriter: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeRating: (e: ChangeEvent<HTMLInputElement>) => void;

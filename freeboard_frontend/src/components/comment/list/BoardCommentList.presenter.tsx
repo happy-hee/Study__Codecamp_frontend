@@ -1,11 +1,11 @@
 /**
  * 댓글 리스트 Presenter
  */
-import { getDate } from "../../../../src/commons/libraries/utils";
-import * as S from "./CommentList.styles";
-import { ICommentListUIProps } from "./CommentList.types";
+import { getDate } from "../../../commons/libraries/utils";
+import * as S from "./BoardCommentList.styles";
+import { IBoardCommentListUIProps } from "./BoardCommentList.types";
 
-export default function CommentListUI(props: ICommentListUIProps) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <S.Wrapper>
       {props.data?.fetchBoardComments.map((el) => (

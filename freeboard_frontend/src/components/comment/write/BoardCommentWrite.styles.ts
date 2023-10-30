@@ -63,7 +63,7 @@ export const TextCount = styled.div`
   color: #bdbdbd;
 `;
 
-export const CommentButton = styled.button`
+export const BoardCommentButton = styled.button`
   height: 52px;
   padding: 14px 16px;
   background-color: #000;

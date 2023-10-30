@@ -2,13 +2,13 @@
  * 댓글 작성 Container
  */
 import { useState, ChangeEvent } from "react";
-import CommentNewUI from "./CommentWrite.presenter";
+import BoardCommentNewUI from "./BoardCommentWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BOARD_COMMENT } from "./CommentWrite.queries";
+import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries";
 import { IMutation, IMutationCreateBoardCommentArgs } from "../../../commons/types/generated/types";
 
-export default function CommentNew() {
+export default function BoardCommentNew() {
   const router = useRouter();
 
   // 데이터 State
@@ -83,7 +83,7 @@ export default function CommentNew() {
 
   return (
     <>
-      <CommentNewUI
+      <BoardCommentNewUI
         onChangeWriter={onChangeWriter}
         onChangePassword={onChangePassword}
         onChangeContents={onChangeContents}

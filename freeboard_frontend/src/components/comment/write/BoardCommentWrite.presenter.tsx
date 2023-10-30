@@ -1,10 +1,10 @@
 /**
  * 댓글 작성 Presenter
  */
-import * as S from "./CommentWrite.styles";
-import { ICommentNewUIProps } from "./CommentWrite.types";
+import * as S from "./BoardCommentWrite.styles";
+import { IBoardCommentNewUIProps } from "./BoardCommentWrite.types";
 
-export default function CommentNewUI(props: ICommentNewUIProps) {
+export default function BoardCommentNewUI(props: IBoardCommentNewUIProps) {
   return (
     <S.Wrapper>
       <S.Title>댓글</S.Title>
@@ -22,7 +22,7 @@ export default function CommentNewUI(props: ICommentNewUIProps) {
         />
         <S.ContentsFooter>
           <S.TextCount>0/100</S.TextCount>
-          <S.CommentButton onClick={props.onClickSubmit}>등록하기</S.CommentButton>
+          <S.BoardCommentButton onClick={props.onClickSubmit}>등록하기</S.BoardCommentButton>
         </S.ContentsFooter>
       </S.ContentsWrapper>
     </S.Wrapper>
