@@ -1,0 +1,24 @@
+{
+  "workbench.colorTheme": "Default Dark Modern",
+  "window.zoomLevel": 1,
+
+  // 탭 색상
+  "workbench.colorCustomizations": {
+    // 활성화
+    "editorIndentGuide.activeBackground1": "#ffff11",
+    "editorIndentGuide.activeBackground2": "#2cff2c",
+    "editorIndentGuide.activeBackground3": "#ff31ff",
+    "editorIndentGuide.activeBackground4": "#13e0ff",
+
+    // 비활성화
+    "editorIndentGuide.background1": "#ffff4060",
+    "editorIndentGuide.background2": "#7FFF7F60",
+    "editorIndentGuide.background3": "#FF7FFF60",
+    "editorIndentGuide.background4": "#4FECEC60"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 180
+}
