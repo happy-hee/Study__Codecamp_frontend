@@ -1,6 +1,5 @@
 import { useMutation, gql } from "@apollo/client";
 import { IMutation, IMutationCreateBoardArgs } from "../../../src/commons/types/generated/types";
-import { useState } from "react";
 
 const 나의그래프큐엘세팅 = gql`
   # 변수의 타입을 꼭 입력해주어야 한다.

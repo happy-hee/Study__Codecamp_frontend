@@ -34,7 +34,7 @@ export default function StaticRoutingMovedPage() {
   return (
     <>
       {data?.fetchBoards.map((el: any) => (
-        <div id={el.writer}  onClick={onClickAlert}>
+        <div key={el.number} id={el.writer}  onClick={onClickAlert}>
           <span>
             <input type="checkbox" />
           </span>

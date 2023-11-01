@@ -32,8 +32,7 @@ export default function StaticRoutingMovedPage() {
   return (
     <>
       <div>{router.query.qqq}번 게시글 이동이 완료되었습니다.</div>
-      {/* 논리 연산자를 이용한 조건부 랜더링 */}
-      <div>작성자: {data && data.fetchBoard?.writer}</div>
+      <div>작성자: {data?.fetchBoard?.writer}</div>
       {/* 옵셔널 체이닝을 이용한 조건부 랜더링 */}
       {/* 옵셔널 체이닝은 ?.'앞’의 평가 대상이 undefined나 null이면 평가를 멈추고 undefined를 반환한다.  */}
       <div>제목: {data?.fetchBoard?.title}</div>

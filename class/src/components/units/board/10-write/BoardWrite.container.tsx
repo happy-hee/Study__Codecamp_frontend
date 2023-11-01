@@ -4,7 +4,7 @@
 
 import { useMutation } from "@apollo/client";
 import { useState, ChangeEvent } from "react";
-import { 나의그래프큐엘세팅, UPDATE_BOARD } from "./BoardWrite.queries"; //export는 골라서 가져오기 가능
+import { 나의그래프큐엘세팅, UPDATE_BOARD } from "./BoardWrite.queries"; // export는 골라서 가져오기 가능
 import BoardWriteUI from "./BoardWrite.presenter"; //
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyvariables } from "./BoardWrite.types";
@@ -22,16 +22,16 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onClickSubmit = async () => {
     const result = await 나의함수({
       variables: {
-        writer: writer, // writer state 를 넣음
-        title: title, // title state 를 넣음
-        contents: contents, // contents state 를 넣음
+        writer, // writer state 를 넣음
+        title, // title state 를 넣음
+        contents, // contents state 를 넣음
       },
     });
     console.log(result);
 
     // 상세페이지로 이동
     // 게시글 번호 : result.data.createBoard.number
-    router.push(`/section10/10-02-typescript-boards/${result.data.createBoard.number}`);
+    void router.push(`/section10/10-02-typescript-boards/${result.data.createBoard.number}`);
   };
 
   // 게시물 수정
@@ -50,7 +50,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     const result = await updateBoard({
       variables: myVariables,
     });
-    router.push(`/section10/10-02-typescript-boards/${result.data.updateBoard.number}`);
+    void router.push(`/section10/10-02-typescript-boards/${result.data.updateBoard.number}`);
   };
 
   // ChangeEvent : React에서 import

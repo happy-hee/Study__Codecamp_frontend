@@ -27,8 +27,8 @@ export default function StaticRoutingMovedPage() {
   return (
     <>
       {data?.fetchBoards.map((el: any) => (
-        <div id={el.writer} onClick={qqq1}>
-          {/**<span onClick={qqq2}>
+        <div key={el.number} id={el.writer} onClick={qqq1}>
+          {/** <span onClick={qqq2}>
             아래 input(qqq3)을 클릭했을 시 실행되는 것: qqq3, qqq2, qqq1
             qqq4는 input의 상위 태그가 아니라 상위 span 태그의 형제 요소이다.
             그러므로 qqq4는 실행되지 않는다.
