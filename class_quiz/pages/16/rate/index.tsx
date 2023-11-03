@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const desc = ["1점", "2점", "3점", "4점", "5점"];
 
-export default function LibraryPage() {
+export default function RatePage() {
   const [value, setValue] = useState(3);
 
   const onChangeStar = (value: number): void => {
