@@ -26,8 +26,13 @@ export interface IBoardWriteUIProps {
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeAddressDetail: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
+  onClickPostcode: () => void;
+  address: string;
+  addressDetail: string;
+  zipcode: string;
   errorWriter: string;
   errorPassword: string;
   errorTitle: string;

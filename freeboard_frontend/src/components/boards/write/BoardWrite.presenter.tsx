@@ -27,12 +27,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </S.WriterWrapper>
       <S.InputWrapper>
         <S.Label>제목</S.Label>
-        <S.Subject
-          type="text"
-          placeholder="제목을  작성해주세요."
-          onChange={props.onChangeTitle}
-          defaultValue={props.data?.fetchBoard.title}
-        ></S.Subject>
+        <S.Subject type="text" placeholder="제목을  작성해주세요." onChange={props.onChangeTitle} defaultValue={props.data?.fetchBoard.title}></S.Subject>
         <S.ErrorMessage>{props.errorTitle}</S.ErrorMessage>
       </S.InputWrapper>
       <S.InputWrapper>
@@ -43,11 +38,11 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       <S.InputWrapper>
         <S.Label>주소</S.Label>
         <S.ZipcodeWrapper>
-          <S.Zipcode placeholder="07250" />
-          <S.SearchButton>우편번호 검색</S.SearchButton>
+          <S.Zipcode value={props.zipcode} placeholder="우편번호" />
+          <S.SearchButton onClick={props.onClickPostcode}>우편번호 검색</S.SearchButton>
         </S.ZipcodeWrapper>
-        <S.Address />
-        <S.Address />
+        <S.Address value={props.address} />
+        <S.Address onChange={props.onChangeAddressDetail} />
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>

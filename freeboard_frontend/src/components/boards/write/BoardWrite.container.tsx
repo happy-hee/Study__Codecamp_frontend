@@ -6,6 +6,7 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps } from "./BoardWrite.types";
 import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../commons/types/generated/types";
 import { Modal } from "antd";
+import { useDaumPostcodePopup, Address } from "react-daum-postcode";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -15,6 +16,9 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [password, setPassword] = useState(""); //비밀번호
   const [title, setTitle] = useState(""); // 제목
   const [contents, setContents] = useState(""); //내용
+  const [address, setAddress] = useState(""); //주소1
+  const [addressDetail, setAddressDetail] = useState(""); //주소2
+  const [zipcode, setZipcode] = useState(""); //우편번호
   const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD); // 게시글 등록 Mutation
   const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
@@ -74,6 +78,34 @@ export default function BoardNew(props: IBoardWriteProps) {
       setErrorContents("");
     }
   }
+  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+    setAddressDetail(event.target.value);
+  }
+
+  // 주소 팝업
+  const postPopupOpen = useDaumPostcodePopup();
+
+  const handleComplete = (data: Address): void => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+
+    setAddress(fullAddress); // 주소1
+    setZipcode(data.zonecode); // 우편번호
+  };
+
+  const onClickPostcode = () => {
+    postPopupOpen({ onComplete: handleComplete });
+  };
 
   // 게시글 등록
   const onClickSubmit = async () => {
@@ -102,9 +134,16 @@ export default function BoardNew(props: IBoardWriteProps) {
               password,
               title,
               contents,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
+
+        console.log(result);
 
         Modal.success({
           content: "등록되었습니다.",
@@ -136,7 +175,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     // => 아래쪽이 실행이 안되도록 해준다.
 
     //검증
-    if (!title && !contents) {
+    if (!title && !contents && !address && !addressDetail) {
       Modal.warning({
         content: "수정한 내용이 없습니다.",
       });
@@ -155,6 +194,8 @@ export default function BoardNew(props: IBoardWriteProps) {
     // 각 값이 있을 경우만 게시글 수정
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (address) updateBoardInput.boardAddress = { address };
+    if (addressDetail) updateBoardInput.boardAddress = { addressDetail };
 
     try {
       // boardId가 string이 아닐 경우 대비 얼럿
@@ -199,6 +240,11 @@ export default function BoardNew(props: IBoardWriteProps) {
       data={props.data}
       isActive={isActive}
       isEdit={props.isEdit}
+      address={address}
+      addressDetail={addressDetail}
+      onChangeAddressDetail={onChangeAddressDetail}
+      zipcode={zipcode}
+      onClickPostcode={onClickPostcode}
     />
   );
 }
