@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -59,6 +60,7 @@ export const Title = styled.h1`
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
+  min-height: 600px;
 `;
 
 export const BottomWrapper = styled.div`
@@ -80,4 +82,41 @@ export const Button = styled.button`
     background-color: gold;
     border-color: gold;
   }
+`;
+
+export const LikeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Like = styled.div`
+  font-size: 24px;
+  padding: 0 10px;
+  margin: 0 10px;
+  text-align: center;
+  color: #ffd600;
+  cursor: pointer;
+`;
+export const Dislike = styled.div`
+  font-size: 24px;
+  padding: 0 10px;
+  margin: 0 10px;
+  text-align: center;
+  color: #828282;
+  cursor: pointer;
+`;
+export const LikeCount = styled.div`
+  font-size: 18px;
+`;
+export const DislikeCount = styled.div`
+  font-size: 18px;
+`;
+
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 20px;
+`;
+
+export const DislikeIcon = styled(DislikeOutlined)`
+  font-size: 20px;
 `;

@@ -6,4 +6,8 @@ export interface IBoardDetailUIProps {
   data?: Pick<IQuery, "fetchBoard">;
   isEdit?: boolean;
   onClickMoveEdit: () => void;
+  onClickLike: () => void;
+  onClickDislike: () => void;
+  likeCount: number;
+  dislikeCount: number;
 }

@@ -17,6 +17,16 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
           <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+          <S.LikeWrapper>
+            <S.Like onClick={props.onClickLike}>
+              <S.LikeIcon />
+              <S.LikeCount>{props.likeCount}</S.LikeCount>
+            </S.Like>
+            <S.Dislike onClick={props.onClickDislike}>
+              <S.DislikeIcon />
+              <S.DislikeCount>{props.dislikeCount}</S.DislikeCount>
+            </S.Dislike>
+          </S.LikeWrapper>
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
