@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries";
 import { IMutation, IMutationCreateBoardCommentArgs } from "../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function BoardCommentNew() {
   const router = useRouter();
@@ -20,40 +21,48 @@ export default function BoardCommentNew() {
   const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
 
   // 데이터 저장
-  function onChangeWriter(e: ChangeEvent<HTMLInputElement>) {
-    setWriter(e.target.value);
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
+    setWriter(event.target.value);
   }
-  function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
-    setPassword(e.target.value);
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value);
   }
-  function onChangeContents(e: ChangeEvent<HTMLTextAreaElement>) {
-    setContents(e.target.value);
+  function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
+    setContents(event.target.value);
   }
-  function onChangeRating(e: ChangeEvent<HTMLInputElement>) {
-    setRating(e.target.value);
+  function onChangeRating(event: ChangeEvent<HTMLInputElement>) {
+    setRating(event.target.value);
   }
 
   // 댓글 등록
   const onClickSubmit = async () => {
     // 데이터 빈칸 검증
     if (!writer) {
-      alert("이름을 입력해주세요.");
+      Modal.warning({
+        content: "이름을 입력해주세요.",
+      });
     }
     if (!password) {
-      alert("비밀번호를 입력해주세요.");
+      Modal.warning({
+        content: "비밀번호를 입력해주세요.",
+      });
     }
     if (!contents) {
-      alert("내용을 입력해주세요.");
+      Modal.warning({
+        content: "내용을 입력해주세요.",
+      });
     }
     if (!rating) {
-      alert("점수를 선택해주세요.");
+      Modal.warning({
+        content: "점수를 선택해주세요.",
+      });
     }
 
     if (writer && password && contents && rating) {
       try {
         // boardId가 string이 아닐 경우 대비 얼럿
         if (typeof router.query.boardId !== "string") {
-          alert("시스템에 문제가 있습니다.");
+          Modal.error({ content: "시스템에 문제가 있습니다." });
           return;
         }
 
@@ -69,13 +78,17 @@ export default function BoardCommentNew() {
           },
         });
 
-        alert("등록되었습니다.");
+        Modal.success({
+          content: "등록되었습니다.",
+        });
 
         // 게시글 상세페이지로 이동
         router.push(`/boards/${router.query.boardId}`);
       } catch (error) {
         if (error instanceof Error) {
-          alert(error.message);
+          Modal.error({
+            content: error.message,
+          });
         }
       }
     }

@@ -5,6 +5,7 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps } from "./BoardWrite.types";
 import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -25,51 +26,51 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [isActive, setIsActive] = useState(false);
 
   // 데이터 저장
-  function onChangeWriter(e: ChangeEvent<HTMLInputElement>) {
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     // 이름
-    setWriter(e.target.value);
-    if (e.target.value && password && title && contents) {
+    setWriter(event.target.value);
+    if (event.target.value && password && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-    if (e.target.value !== "") {
+    if (event.target.value !== "") {
       setErrorWriter("");
     }
   }
-  function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     //비밀번호
-    setPassword(e.target.value);
-    if (e.target.value && writer && title && contents) {
+    setPassword(event.target.value);
+    if (event.target.value && writer && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-    if (e.target.value !== "") {
+    if (event.target.value !== "") {
       setErrorPassword("");
     }
   }
-  function onChangeTitle(e: ChangeEvent<HTMLInputElement>) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     //제목
-    setTitle(e.target.value);
-    if (e.target.value && writer && password && contents) {
+    setTitle(event.target.value);
+    if (event.target.value && writer && password && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-    if (e.target.value !== "") {
+    if (event.target.value !== "") {
       setErrorTitle("");
     }
   }
-  function onChangeContents(e: ChangeEvent<HTMLTextAreaElement>) {
+  function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     //내용
-    setContents(e.target.value);
-    if (e.target.value && writer && password && title) {
+    setContents(event.target.value);
+    if (event.target.value && writer && password && title) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-    if (e.target.value !== "") {
+    if (event.target.value !== "") {
       setErrorContents("");
     }
   }
@@ -105,14 +106,20 @@ export default function BoardNew(props: IBoardWriteProps) {
           },
         });
 
-        alert("등록되었습니다.");
+        Modal.success({
+          content: "등록되었습니다.",
+        });
         // 상세페이지로 이동
         router.push(`/boards/${result.data?.createBoard._id}`);
-      } catch (e) {
-        if (typeof e === "string") {
-          alert(e.toUpperCase());
-        } else if (e instanceof Error) {
-          alert(e.message);
+      } catch (error) {
+        if (typeof error === "string") {
+          Modal.error({
+            content: error.toUpperCase(),
+          });
+        } else if (error instanceof Error) {
+          Modal.error({
+            content: error.message,
+          });
         }
       }
     }
@@ -130,12 +137,16 @@ export default function BoardNew(props: IBoardWriteProps) {
 
     //검증
     if (!title && !contents) {
-      alert("수정한 내용이 없습니다.");
+      Modal.warning({
+        content: "수정한 내용이 없습니다.",
+      });
       return;
     }
 
     if (!password) {
-      alert("비밀번호를 입력해주세요.");
+      Modal.warning({
+        content: "비밀번호를 입력해주세요.",
+      });
       return;
     }
 
@@ -148,7 +159,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     try {
       // boardId가 string이 아닐 경우 대비 얼럿
       if (typeof router.query.boardId !== "string") {
-        alert("시스템에 문제가 있습니다.");
+        Modal.error({ content: "시스템에 문제가 있습니다." });
         return;
       }
 
@@ -166,7 +177,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     } catch (error) {
       // instance란: 원본으로부터 만들어진 것 (error는 Error의 instance 이다)
       if (error instanceof Error) {
-        alert(error.message);
+        Modal.error({ content: error.message });
       }
     }
   };
