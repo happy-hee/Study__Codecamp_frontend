@@ -32,8 +32,6 @@ export default function BoardDetail() {
     setDislikeCount(dislikeCount + 1);
   };
 
-  // 좋아요/싫어요
-
   return (
     <BoardDetailUI data={data} onClickMoveEdit={onClickMoveEdit} onClickLike={onClickLike} onClickDislike={onClickDislike} likeCount={likeCount} dislikeCount={dislikeCount} />
   );

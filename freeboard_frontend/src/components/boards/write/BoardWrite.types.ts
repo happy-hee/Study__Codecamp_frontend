@@ -9,15 +9,6 @@ export interface IBoardWriteProps {
   data?: Pick<IQuery, "fetchBoard">;
 }
 
-export interface IMyVariables {
-  updateBoardInput: {
-    title?: string;
-    contents?: string;
-  };
-  password: string;
-  boardId: string;
-}
-
 export interface IBoardWriteUIProps {
   isEdit: boolean;
   isActive: boolean;
@@ -26,6 +17,7 @@ export interface IBoardWriteUIProps {
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeYoutubeLink: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;

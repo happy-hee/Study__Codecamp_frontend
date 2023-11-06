@@ -63,6 +63,12 @@ export const Contents = styled.div`
   min-height: 600px;
 `;
 
+export const Youtube = styled.div`
+  width: 100%;
+  text-align: center;
+  padding: 120px 0;
+`;
+
 export const BottomWrapper = styled.div`
   display: flex;
   flex-direction: row;

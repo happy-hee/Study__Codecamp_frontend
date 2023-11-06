@@ -8,16 +8,7 @@ export const CREATE_BOARD = gql`
       writer
       title
       contents
-      # 작성자, 제목, 비밀번호, 내용 부분만 작업했으므로 다른 것들은 주석 처리
-      # youtubeUrl
-      # likeCount
-      # dislikeCoune
-      # images
-      # boardAddress
-      # user
-      # createdAt
-      # updatedAt
-      # deletedAt
+      youtubeUrl
     }
   }
 `;
@@ -30,16 +21,7 @@ export const UPDATE_BOARD = gql`
       writer
       title
       contents
-      # 작성자, 제목, 비밀번호, 내용 부분만 작업했으므로 다른 것들은 주석 처리
-      # youtubeUrl
-      # likeCount
-      # dislikeCoune
-      # images
-      # boardAddress
-      # user
-      # createdAt
-      # updatedAt
-      # deletedAt
+      youtubeUrl
     }
   }
 `;

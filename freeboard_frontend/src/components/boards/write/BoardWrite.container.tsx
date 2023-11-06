@@ -16,6 +16,7 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [password, setPassword] = useState(""); //비밀번호
   const [title, setTitle] = useState(""); // 제목
   const [contents, setContents] = useState(""); //내용
+  const [youtubeUrl, setYoutubeUrl] = useState(""); //유튜브 링크
   const [address, setAddress] = useState(""); //주소1
   const [addressDetail, setAddressDetail] = useState(""); //주소2
   const [zipcode, setZipcode] = useState(""); //우편번호
@@ -78,7 +79,14 @@ export default function BoardNew(props: IBoardWriteProps) {
       setErrorContents("");
     }
   }
+
+  function onChangeYoutubeLink(event: ChangeEvent<HTMLInputElement>) {
+    // 유튜브
+    setYoutubeUrl(event.target.value);
+  }
+
   function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+    // 상세 주소
     setAddressDetail(event.target.value);
   }
 
@@ -134,6 +142,7 @@ export default function BoardNew(props: IBoardWriteProps) {
               password,
               title,
               contents,
+              youtubeUrl,
               boardAddress: {
                 zipcode,
                 address,
@@ -175,7 +184,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     // => 아래쪽이 실행이 안되도록 해준다.
 
     //검증
-    if (!title && !contents && !address && !addressDetail) {
+    if (!title && !contents && !youtubeUrl && !address && !addressDetail) {
       Modal.warning({
         content: "수정한 내용이 없습니다.",
       });
@@ -194,6 +203,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     // 각 값이 있을 경우만 게시글 수정
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
     if (address) updateBoardInput.boardAddress = { address };
     if (addressDetail) updateBoardInput.boardAddress = { addressDetail };
 
@@ -230,6 +240,7 @@ export default function BoardNew(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       errorPassword={errorPassword}
       onChangeTitle={onChangeTitle}
+      onChangeYoutubeLink={onChangeYoutubeLink}
       errorTitle={errorTitle}
       onChangeContents={onChangeContents}
       errorContents={errorContents}
