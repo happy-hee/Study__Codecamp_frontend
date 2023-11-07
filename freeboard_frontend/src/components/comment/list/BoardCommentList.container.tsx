@@ -12,12 +12,13 @@ import { Modal } from "antd";
 export default function BoardCommentLlist() {
   const router = useRouter();
 
-  if (!router || typeof router.query.boardId !== "string") return <></>;
+  const boardId = typeof router.query.boardId === "string" ? router.query.boardId : "";
 
   const { data } = useQuery<Pick<IQuery, "fetchBoardComments">, IQueryFetchBoardCommentsArgs>(FETCH_BOARD_COMMENTS, {
     variables: {
-      boardId: router.query.boardId,
+      boardId,
     },
+    skip: boardId === "",
   });
 
   const [deleteBoardComment] = useMutation<Pick<IMutation, "deleteBoardComment">, IMutationDeleteBoardCommentArgs>(DELETE_BOARD_COMMENT);
