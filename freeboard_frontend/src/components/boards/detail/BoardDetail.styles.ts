@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { LikeOutlined, DislikeOutlined, LinkOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -32,6 +32,7 @@ export const Header = styled.div`
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
 `;
 
 export const ProfileIcon = styled.img`
@@ -42,6 +43,30 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+export const InfoEtcWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0 auto;
+  flex-direction: row;
+`;
+
+export const InfoEtc = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd600;
+`;
+
+export const LinkIcon = styled(LinkOutlined)`
+  font-size: 26px;
+`;
+
+export const AddressIcon = styled(EnvironmentOutlined)`
+  font-size: 26px;
+  margin-left: 20px;
 `;
 
 export const Writer = styled.div``;
@@ -71,7 +96,7 @@ export const Youtube = styled.div`
 
 export const Iframe = styled.iframe`
   border: 0;
-`
+`;
 
 export const BottomWrapper = styled.div`
   display: flex;
