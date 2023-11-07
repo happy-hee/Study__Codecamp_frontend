@@ -3,6 +3,7 @@
  */
 import * as S from "./BoardCommentWrite.styles";
 import { IBoardCommentNewUIProps } from "./BoardCommentWrite.types";
+import { Rate } from "antd";
 
 export default function BoardCommentNewUI(props: IBoardCommentNewUIProps) {
   return (
@@ -12,7 +13,7 @@ export default function BoardCommentNewUI(props: IBoardCommentNewUIProps) {
         {/* 작성자/비밀번호/별점 */}
         <S.Writer type="text" placeholder="작성자" onChange={props.onChangeWriter} />
         <S.Password type="password" placeholder="비밀번호" onChange={props.onChangePassword} />
-        <input type="text" value="1" onChange={props.onChangeRating} />
+        <Rate onChange={props.onChangeRating} value={props.rating} />
         {/* 내용 */}
       </S.InputWrapper>
       <S.ContentsWrapper>

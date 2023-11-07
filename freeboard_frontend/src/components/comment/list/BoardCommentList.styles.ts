@@ -33,7 +33,6 @@ export const Writer = styled.span`
   font-weight: 500;
   margin-right: 16px;
 `;
-export const Rating = styled.span``;
 export const Contents = styled.div`
   margin-bottom: 20px;
   color: #4f4f4f;

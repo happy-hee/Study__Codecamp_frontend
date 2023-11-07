@@ -4,6 +4,7 @@
 import { getDate } from "../../../commons/libraries/utils";
 import * as S from "./BoardCommentList.styles";
 import { IBoardCommentListUIProps } from "./BoardCommentList.types";
+import { Rate } from "antd";
 
 export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
@@ -15,7 +16,7 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
           <S.Center>
             <S.InfoWrapper>
               <S.Writer>{el.writer}</S.Writer>
-              <S.Rating>{el.rating}</S.Rating>
+              <Rate value={el.rating ?? 0}></Rate>
             </S.InfoWrapper>
             <S.ContentsWrapper>
               <S.Contents>{el.contents}</S.Contents>

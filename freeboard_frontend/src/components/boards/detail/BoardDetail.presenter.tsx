@@ -19,7 +19,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <S.Contents>
             {props.data?.fetchBoard?.contents}
             <S.Youtube>
-              <iframe id="ytplayer" width="486" height="240" src={`${props.data?.fetchBoard?.youtubeUrl}`}></iframe>
+              <S.Iframe id="ytplayer" width="486" height="240" src={`${props.data?.fetchBoard?.youtubeUrl ?? ""}`}></S.Iframe>
             </S.Youtube>
           </S.Contents>
           <S.LikeWrapper>

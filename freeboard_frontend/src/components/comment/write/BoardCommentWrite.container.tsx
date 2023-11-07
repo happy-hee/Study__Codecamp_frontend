@@ -16,7 +16,7 @@ export default function BoardCommentNew() {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(3);
   // 댓글 등록 Mutation
   const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
 
@@ -30,8 +30,9 @@ export default function BoardCommentNew() {
   function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
   }
-  function onChangeRating(event: ChangeEvent<HTMLInputElement>) {
-    setRating(event.target.value);
+  // 별점
+  const onChangeRating = (value: number): void => {
+    setRating(value);
   }
 
   // 댓글 등록
@@ -72,7 +73,7 @@ export default function BoardCommentNew() {
               writer,
               password,
               contents,
-              rating: Number(rating),
+              rating,
             },
             boardId: router.query.boardId,
           },
@@ -102,6 +103,7 @@ export default function BoardCommentNew() {
         onChangeContents={onChangeContents}
         onChangeRating={onChangeRating}
         onClickSubmit={onClickSubmit}
+        rating={rating}
       />
     </>
   );

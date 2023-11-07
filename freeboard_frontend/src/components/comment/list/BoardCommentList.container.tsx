@@ -57,7 +57,7 @@ export default function BoardCommentLlist() {
 
   return (
     <>
-      <BoardCommentList onClickDelete={onClickDelete} data={data} />
+      <BoardCommentList onClickDelete={onClickDelete} data={data}/>
     </>
   );
 }
