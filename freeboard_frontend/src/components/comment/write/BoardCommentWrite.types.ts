@@ -8,6 +8,6 @@ export interface IBoardCommentNewUIProps {
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeRating:  (value: number) => void;
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  onClickSubmit: () => void;
+  onClickSubmit: () => Promise<void>;
   rating: number;
 }

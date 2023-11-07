@@ -6,5 +6,5 @@ import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IBoardCommentListUIProps {
   data?: Pick<IQuery, "fetchBoardComments">;
-  onClickDelete: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClickDelete: (e: MouseEvent<HTMLButtonElement>) => Promise<void>;
 }

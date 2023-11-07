@@ -23,7 +23,7 @@ export default function BoardCommentLlist() {
 
   const [deleteBoardComment] = useMutation<Pick<IMutation, "deleteBoardComment">, IMutationDeleteBoardCommentArgs>(DELETE_BOARD_COMMENT);
 
-  const onClickDelete = async (event: MouseEvent<HTMLButtonElement>) => {
+  const onClickDelete = async (event: MouseEvent<HTMLButtonElement>): Promise<void> => {
     const password = prompt("비밀번호를 입력해주세요.");
     try {
       if (event.target instanceof HTMLButtonElement) {

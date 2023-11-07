@@ -20,8 +20,8 @@ export interface IBoardWriteUIProps {
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeLink: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClickSubmit: () => void;
-  onClickUpdate: () => void;
+  onClickSubmit: () => Promise<void>;
+  onClickUpdate: () => Promise<void>;
   isOpen: boolean;
   onToggleModal: () => void;
   handleComplete: (data: Address) => void;

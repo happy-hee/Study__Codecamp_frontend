@@ -33,10 +33,10 @@ export default function BoardCommentNew() {
   // 별점
   const onChangeRating = (value: number): void => {
     setRating(value);
-  }
+  };
 
   // 댓글 등록
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (): Promise<void> => {
     // 데이터 빈칸 검증
     if (!writer) {
       Modal.warning({

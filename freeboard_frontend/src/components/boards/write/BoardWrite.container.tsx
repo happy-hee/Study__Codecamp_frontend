@@ -116,7 +116,7 @@ export default function BoardNew(props: IBoardWriteProps) {
   };
 
   // 게시글 등록
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (): Promise<void> => {
     // 데이터 빈칸 검증
     if (!writer) {
       setErrorWriter("이름을 입력해주세요.");
@@ -174,7 +174,7 @@ export default function BoardNew(props: IBoardWriteProps) {
   };
 
   // 게시글 수정
-  const onClickUpdate = async () => {
+  const onClickUpdate = async (): Promise<void> => {
     // if~else 문으로 작성하게 되면 코드가 너무 길어지므로
     // return을 사용해서 자신을 감싼 함수(onClickUpdate)를 종료해준다.
 
