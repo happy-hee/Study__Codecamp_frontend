@@ -3,6 +3,7 @@
  */
 import { ChangeEvent } from "react";
 import { IQuery } from "../../../commons/types/generated/types";
+import { Address } from "react-daum-postcode";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
@@ -21,7 +22,9 @@ export interface IBoardWriteUIProps {
   onChangeAddressDetail: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
-  onClickPostcode: () => void;
+  isOpen: boolean;
+  onToggleModal: () => void;
+  handleComplete: (data: Address) => void;
   address: string;
   addressDetail: string;
   zipcode: string;

@@ -6,7 +6,7 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps } from "./BoardWrite.types";
 import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../commons/types/generated/types";
 import { Modal } from "antd";
-import { useDaumPostcodePopup, Address } from "react-daum-postcode";
+import { Address } from "react-daum-postcode";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -17,6 +17,7 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [title, setTitle] = useState(""); // 제목
   const [contents, setContents] = useState(""); //내용
   const [youtubeUrl, setYoutubeUrl] = useState(""); //유튜브 링크
+  const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState(""); //주소1
   const [addressDetail, setAddressDetail] = useState(""); //주소2
   const [zipcode, setZipcode] = useState(""); //우편번호
@@ -90,9 +91,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     setAddressDetail(event.target.value);
   }
 
-  // 주소 팝업
-  const postPopupOpen = useDaumPostcodePopup();
-
+  // 주소 검색
   const handleComplete = (data: Address): void => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -109,10 +108,11 @@ export default function BoardNew(props: IBoardWriteProps) {
 
     setAddress(fullAddress); // 주소1
     setZipcode(data.zonecode); // 우편번호
+    onToggleModal();
   };
 
-  const onClickPostcode = () => {
-    postPopupOpen({ onComplete: handleComplete });
+  const onToggleModal = (): void => {
+    setIsOpen((prev) => !prev);
   };
 
   // 게시글 등록
@@ -255,7 +255,9 @@ export default function BoardNew(props: IBoardWriteProps) {
       addressDetail={addressDetail}
       onChangeAddressDetail={onChangeAddressDetail}
       zipcode={zipcode}
-      onClickPostcode={onClickPostcode}
+      isOpen={isOpen}
+      onToggleModal={onToggleModal}
+      handleComplete={handleComplete}
     />
   );
 }
