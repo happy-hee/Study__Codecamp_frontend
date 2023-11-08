@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Rate } from "antd";
+import { Rate, Modal } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -64,9 +64,14 @@ export const DeleteButton = styled.button`
   height: 24px;
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 `;
 export const DeleteButtonIcon = styled.img`
   width: 100%;
 `;
 
+export const PasswordInput = styled.input``;
+
 export const CommentRate = styled(Rate)``;
+
+export const PasswordModal = styled(Modal)``;
