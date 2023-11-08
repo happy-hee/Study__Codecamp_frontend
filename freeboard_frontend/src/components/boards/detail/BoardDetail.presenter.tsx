@@ -1,4 +1,3 @@
-import { Tooltip } from "antd";
 import * as S from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 
@@ -16,9 +15,14 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             <S.InfoEtcWrapper>
               <S.InfoEtc>
                 <S.LinkIcon />
-                <Tooltip placement="topRight" title={`${props.data?.fetchBoard?.boardAddress?.address} ${props.data?.fetchBoard?.boardAddress?.addressDetail ?? ""}`}>
+                <S.AddressTooltip
+                  placement="topRight"
+                  title={`${props.data?.fetchBoard?.boardAddress?.address ?? ""} ${
+                    props.data?.fetchBoard?.boardAddress?.addressDetail ?? ""
+                  }`}
+                >
                   <S.AddressIcon />
-                </Tooltip>
+                </S.AddressTooltip>
               </S.InfoEtc>
             </S.InfoEtcWrapper>
           </S.ProfileWrapper>
@@ -27,9 +31,17 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
           <S.Contents>
             {props.data?.fetchBoard?.contents}
-            <S.Youtube>
-              <S.Iframe id="ytplayer" width="486" height="240" src={`${props.data?.fetchBoard?.youtubeUrl ?? ""}`}></S.Iframe>
-            </S.Youtube>
+
+            {props.data?.fetchBoard.youtubeUrl !== "" && ( // 유튜브 영상이 있을 경우만 표시
+              <S.Youtube>
+                <S.Iframe
+                  id="ytplayer"
+                  width="486"
+                  height="240"
+                  src={`${props.data?.fetchBoard?.youtubeUrl ?? ""}`}
+                ></S.Iframe>
+              </S.Youtube>
+            )}
           </S.Contents>
           <S.LikeWrapper>
             <S.Like onClick={props.onClickLike}>

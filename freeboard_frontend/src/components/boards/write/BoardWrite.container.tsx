@@ -4,7 +4,12 @@ import { ChangeEvent, useState } from "react";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps } from "./BoardWrite.types";
-import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../commons/types/generated/types";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+  IUpdateBoardInput,
+} from "../../../commons/types/generated/types";
 import { Modal } from "antd";
 import { Address } from "react-daum-postcode";
 
@@ -81,7 +86,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     }
   }
 
-  function onChangeYoutubeLink(event: ChangeEvent<HTMLInputElement>) {
+  function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
     // 유튜브
     setYoutubeUrl(event.target.value);
   }
@@ -92,26 +97,13 @@ export default function BoardNew(props: IBoardWriteProps) {
   }
 
   // 주소 검색
-  const handleComplete = (data: Address): void => {
-    let fullAddress = data.address;
-    let extraAddress = "";
-
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-
-    setAddress(fullAddress); // 주소1
+  const onCompleteAddressSearch = (data: Address): void => {
+    setAddress(data.address); // 주소1
     setZipcode(data.zonecode); // 우편번호
-    onToggleModal();
+    setIsOpen((prev) => !prev);
   };
 
-  const onToggleModal = (): void => {
+  const onClickAddressModal = (): void => {
     setIsOpen((prev) => !prev);
   };
 
@@ -184,7 +176,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     // => 아래쪽이 실행이 안되도록 해준다.
 
     //검증
-    if (!title && !contents && !youtubeUrl && !address && !addressDetail) {
+    if (!title && !contents && !youtubeUrl && !address && !addressDetail && !zipcode) {
       Modal.warning({
         content: "수정한 내용이 없습니다.",
       });
@@ -204,8 +196,12 @@ export default function BoardNew(props: IBoardWriteProps) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-    if (address) updateBoardInput.boardAddress = { address };
-    if (addressDetail) updateBoardInput.boardAddress = { addressDetail };
+    if (zipcode !== "" || address !== "" || addressDetail !== "") {
+      updateBoardInput.boardAddress = {};
+      if (zipcode !== "") updateBoardInput.boardAddress.zipcode = zipcode;
+      if (address !== "") updateBoardInput.boardAddress.address = address;
+      if (addressDetail !== "") updateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       // boardId가 string이 아닐 경우 대비 얼럿
@@ -240,7 +236,7 @@ export default function BoardNew(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       errorPassword={errorPassword}
       onChangeTitle={onChangeTitle}
-      onChangeYoutubeLink={onChangeYoutubeLink}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       errorTitle={errorTitle}
       onChangeContents={onChangeContents}
       errorContents={errorContents}
@@ -248,16 +244,15 @@ export default function BoardNew(props: IBoardWriteProps) {
       onClickUpdate={onClickUpdate}
       // BoardNewPage 에서는 props로 data를 넘겨주고 있지 않음.
       // 그러므로 등록 페이지의 경우 data가 undefined가 된다.
+      onChangeAddressDetail={onChangeAddressDetail}
+      onClickAddressModal={onClickAddressModal}
+      onCompleteAddressSearch={onCompleteAddressSearch}
       data={props.data}
       isActive={isActive}
       isEdit={props.isEdit}
       address={address}
-      addressDetail={addressDetail}
-      onChangeAddressDetail={onChangeAddressDetail}
       zipcode={zipcode}
       isOpen={isOpen}
-      onToggleModal={onToggleModal}
-      handleComplete={handleComplete}
     />
   );
 }

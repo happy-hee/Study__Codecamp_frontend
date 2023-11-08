@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -67,3 +68,5 @@ export const DeleteButton = styled.button`
 export const DeleteButtonIcon = styled.img`
   width: 100%;
 `;
+
+export const CommentRate = styled(Rate)``;

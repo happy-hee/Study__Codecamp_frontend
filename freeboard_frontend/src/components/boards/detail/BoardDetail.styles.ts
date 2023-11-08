@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined, LinkOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -155,3 +156,5 @@ export const LikeIcon = styled(LikeOutlined)`
 export const DislikeIcon = styled(DislikeOutlined)`
   font-size: 20px;
 `;
+
+export const AddressTooltip = styled(Tooltip)``;

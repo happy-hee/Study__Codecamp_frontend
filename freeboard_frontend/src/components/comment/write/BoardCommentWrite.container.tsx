@@ -18,7 +18,9 @@ export default function BoardCommentNew() {
   const [contents, setContents] = useState("");
   const [rating, setRating] = useState(3);
   // 댓글 등록 Mutation
-  const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
+  const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(
+    CREATE_BOARD_COMMENT,
+  );
 
   // 데이터 저장
   function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
@@ -93,6 +95,12 @@ export default function BoardCommentNew() {
         }
       }
     }
+
+    // 등록 후 값 비우기
+    setWriter("");
+    setPassword("");
+    setContents("");
+    setRating(3);
   };
 
   return (
@@ -103,6 +111,9 @@ export default function BoardCommentNew() {
         onChangeContents={onChangeContents}
         onChangeRating={onChangeRating}
         onClickSubmit={onClickSubmit}
+        writer={writer}
+        password={password}
+        contents={contents}
         rating={rating}
       />
     </>

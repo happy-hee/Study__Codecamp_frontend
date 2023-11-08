@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { ISubmitButtonProps } from "./BoardWrite.types";
+import { Modal } from "antd";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -76,7 +78,7 @@ export const ZipcodeWrapper = styled.div`
 `;
 
 export const Zipcode = styled.input`
-  width: 77px;
+  width: 120px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
@@ -174,3 +176,7 @@ export const ErrorMessage = styled.div`
   font-size: 12px;
   margin-top: 10px;
 `;
+
+export const AddressModal = styled(Modal)``;
+
+export const AddressSearchInput = styled(DaumPostcodeEmbed)``;

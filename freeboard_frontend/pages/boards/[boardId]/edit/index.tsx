@@ -18,6 +18,11 @@ export const FETCH_BOARD = gql`
       title
       contents
       youtubeUrl
+      boardAddress {
+        address
+        addressDetail
+        zipcode
+      }
     }
   }
 `;
@@ -26,11 +31,10 @@ export default function BoardEditPage() {
   const router = useRouter();
 
   const boardId = typeof router.query.boardId === "string" ? router.query.boardId : "";
-  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
-    FETCH_BOARD, 
-    { variables: {boardId}, skip: boardId === "" }
-  );
-
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: { boardId },
+    skip: boardId === "",
+  });
 
   return <BoardWrite isEdit={true} data={data} />;
 }

@@ -13,6 +13,7 @@ export const FETCH_BOARD = gql`
       boardAddress {
         address
         addressDetail
+        zipcode
       }
     }
   }
