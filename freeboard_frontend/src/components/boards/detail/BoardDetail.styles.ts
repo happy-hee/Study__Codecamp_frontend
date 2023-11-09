@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined, LinkOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -76,7 +77,6 @@ export const CreatedAt = styled.div``;
 
 export const Body = styled.div`
   width: 100%;
-  min-height: 800px;
 `;
 
 export const Title = styled.h1`
@@ -86,7 +86,7 @@ export const Title = styled.h1`
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
-  min-height: 600px;
+  min-height: 500px;
 `;
 
 export const Youtube = styled.div`
@@ -158,3 +158,5 @@ export const DislikeIcon = styled(DislikeOutlined)`
 `;
 
 export const AddressTooltip = styled(Tooltip)``;
+
+export const VideoPlayer = styled(ReactPlayer)``;

@@ -29,20 +29,17 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
-          <S.Contents>
-            {props.data?.fetchBoard?.contents}
-
-            {props.data?.fetchBoard.youtubeUrl !== "" && ( // 유튜브 영상이 있을 경우만 표시
-              <S.Youtube>
-                <S.Iframe
-                  id="ytplayer"
-                  width="486"
-                  height="240"
-                  src={`${props.data?.fetchBoard?.youtubeUrl ?? ""}`}
-                ></S.Iframe>
-              </S.Youtube>
-            )}
-          </S.Contents>
+          <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+          {props.data?.fetchBoard.youtubeUrl !== "" && ( // 유튜브 영상이 있을 경우만 표시
+            <S.Youtube>
+              <S.VideoPlayer
+                url={`${props.data?.fetchBoard?.youtubeUrl ?? ""}`}
+                width={486}
+                height={240}
+                style={{ display: "inline-block" }}
+              ></S.VideoPlayer>
+            </S.Youtube>
+          )}
           <S.LikeWrapper>
             <S.Like onClick={props.onClickLike}>
               <S.LikeIcon />
