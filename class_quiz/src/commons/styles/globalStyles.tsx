@@ -4,5 +4,11 @@ export const globalStyles = css`
   * {
     box-sizing: border-box;
     font-size: 30px;
+    font-family: "myfont";
+  }
+
+  @font-face {
+    font-family: "myfont";
+    src: url("/fonts/scifibit.ttf");
   }
 `;
