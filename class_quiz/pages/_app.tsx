@@ -1,7 +1,9 @@
 import { AppProps } from "next/app";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "../src/components/commons/layout";
-
+import { Global } from "@emotion/react";
+import {globalStyles} from '../src/commons/styles/globalStyles'
+ 
 export default function App({ Component }: AppProps) {
   // graphql 세팅
   const client = new ApolloClient({
@@ -11,9 +13,12 @@ export default function App({ Component }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Layout>
-        <Component />
-      </Layout>
+      <>
+      <Global styles={globalStyles} />
+        <Layout>
+          <Component />
+        </Layout>
+      </>
     </ApolloProvider>
   );
 }
