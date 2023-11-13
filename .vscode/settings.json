@@ -14,7 +14,10 @@
     "editorIndentGuide.background1": "#ffff4060",
     "editorIndentGuide.background2": "#7FFF7F60",
     "editorIndentGuide.background3": "#FF7FFF60",
-    "editorIndentGuide.background4": "#4FECEC60"
+    "editorIndentGuide.background4": "#4FECEC60",
+
+    // 커서 색상
+    "editorCursor.foreground": "#2fff00"
   },
   "workbench.iconTheme": "material-icon-theme",
   "editor.tabSize": 2,

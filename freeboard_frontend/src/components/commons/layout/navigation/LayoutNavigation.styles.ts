@@ -17,6 +17,7 @@ export const NavList = styled.li`
   padding: 0 40px;
   color: #ab9000;
   font-weight: 500;
+  cursor: pointer;
 
   &.active {
     color: #000;
