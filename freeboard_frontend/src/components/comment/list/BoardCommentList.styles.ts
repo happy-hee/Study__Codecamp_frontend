@@ -31,7 +31,7 @@ export const InfoWrapper = styled.div`
 export const ContentsWrapper = styled.div``;
 export const Writer = styled.span`
   color: #000;
-  font-weight: 500;
+  font-family: "NotoSansMedium"
   margin-right: 16px;
 `;
 export const Contents = styled.div`
@@ -41,7 +41,6 @@ export const Contents = styled.div`
 export const CreatedAt = styled.div`
   font-size: 12px;
   color: #bdbdbd;
-  font-weight: 400;
 `;
 export const ControlButtonWrapper = styled.div`
   position: absolute;

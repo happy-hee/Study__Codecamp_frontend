@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
-  font-weight: bold;
+  font-family: "NotoSansBold";
 `;
 
 export const WriterWrapper = styled.div`
@@ -50,7 +50,7 @@ export const Password = styled.input`
 export const Label = styled.div`
   padding-bottom: 16px;
   font-size: 16px;
-  font-weight: 500;
+  font-family: "NotoSansMedium";
 `;
 
 export const InputWrapper = styled.div`
@@ -135,7 +135,7 @@ export const RadioButton = styled.input`
 export const RadioLabel = styled.label`
   margin-left: 8px;
   margin-right: 20px;
-  font-weight: 500;
+  font-family: "NotoSansMedium"
   cursor: pointer;
 `;
 
@@ -152,7 +152,7 @@ export const CancelButton = styled.button`
   background-color: #bdbdbd;
   border: none;
   font-size: 16px;
-  font-weight: 500;
+  font-family: "NotoSansMedium"
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;
@@ -162,8 +162,8 @@ export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
+  font-family: "NotoSansMedium"
   font-size: 16px;
-  font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;

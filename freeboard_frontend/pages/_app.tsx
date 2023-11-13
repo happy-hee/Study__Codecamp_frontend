@@ -1,7 +1,10 @@
-import "../styles/globals.css";
+// import "../styles/globals.css";
 // GraphQL 세팅
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/app";
+import Layout from "../src/components/commons/layout";
+import { Global } from "@emotion/react";
+import { globalStyles } from "../src/commons/styles/globalStyles";
 
 export default function App({ Component }: AppProps) {
   // GraphQL 세팅
@@ -13,7 +16,12 @@ export default function App({ Component }: AppProps) {
   return (
     // 아래 컴포넌트에서 GraphQL을 사용할 수 있도록 감싸줌
     <ApolloProvider client={client}>
-      <Component />
+      <Global styles={globalStyles} />
+      <>
+        <Layout>
+          <Component />
+        </Layout>
+      </>
     </ApolloProvider>
   );
 }
