@@ -31,7 +31,8 @@ export const InfoWrapper = styled.div`
 export const ContentsWrapper = styled.div``;
 export const Writer = styled.span`
   color: #000;
-  font-family: "NotoSansMedium"
+  font-family: "NotoSans";
+  font-weight: 500;
   margin-right: 16px;
 `;
 export const Contents = styled.div`

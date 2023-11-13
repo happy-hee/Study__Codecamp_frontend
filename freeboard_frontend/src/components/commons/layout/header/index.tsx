@@ -14,7 +14,8 @@ export default function LayoutHeader() {
     font-size: 16px;
     padding: 10px 16px;
     cursor: pointer;
-    font-family: "NotoSansBold";
+    font-family: "NotoSans";
+    font-weight: 700;
   `;
   const SignInButton = styled.button`
     font-size: 16px;
@@ -22,7 +23,8 @@ export default function LayoutHeader() {
     padding: 10px 16px;
     border-radius: 10px;
     cursor: pointer;
-    font-family: "NotoSansBold";
+    font-family: "NotoSans";
+    font-weight: 700;
     margin-left: 4px;
   `;
 

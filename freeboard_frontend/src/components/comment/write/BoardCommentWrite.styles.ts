@@ -11,7 +11,8 @@ export const Title = styled.div`
   padding-left: 38px;
   margin-bottom: 40px;
   background: url("/images/board/detail/rate_review-24px.png") no-repeat left 0 top 3px;
-  font-family: "NotoSansMedium"
+  font-family: "NotoSans";
+  font-weight: 500;
   font-size: 18px;
 `;
 
