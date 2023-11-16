@@ -9,8 +9,13 @@ export const Inner = styled.div`
   display: flex;
   width: 1200px;
   justify-content: space-between;
+  align-items: center;
 `;
-export const Logo = styled.img``;
+export const Logo = styled.img`
+  width: 236px;
+  height: 36px;
+  cursor: pointer;
+`;
 export const SignWrapper = styled.div`
   display: flex;
 `;
