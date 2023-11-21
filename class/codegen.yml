@@ -1,4 +1,5 @@
-schema: http://backend-example.codebootcamp.co.kr/graphql
+# schema 의 주소를 변경할 경우, yarn generate 명령어를 사용해서 types.ts 파일을 업데이트 해줘야 한다.
+schema: http://backend-practice.codebootcamp.co.kr/graphql
 generates:
  ./src/commons/types/generated/types.ts:
   plugins:
