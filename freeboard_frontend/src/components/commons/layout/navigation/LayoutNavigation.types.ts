@@ -1,5 +1,3 @@
 export interface ILayoutNavigationUIProps {
-  onclickMoveToBoard: () => void;
-  onclickMoveToMarket: () => void;
-  onclickMoveToMypage: () => void;
+  onClickNavMenu: (event: any) => void;
 }

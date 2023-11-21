@@ -1,15 +1,21 @@
 import * as S from "./LayoutNavigation.styles";
 import { ILayoutNavigationUIProps } from "./LayoutNavigation.types";
 
+const navList = [
+  { page: "/boards", name: "자유게시판" },
+  { page: "/market", name: "중고마켓" },
+  { page: "/mypage", name: "마이페이지" },
+];
+
 export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
   return (
     <S.Wrapper>
       <S.NavWrapper>
-        <S.NavList onClick={props.onclickMoveToBoard} className="active">
-          자유게시판
-        </S.NavList>
-        <S.NavList onClick={props.onclickMoveToMarket}>중고마켓</S.NavList>
-        <S.NavList onClick={props.onclickMoveToMypage}>마이페이지</S.NavList>
+        {navList.map((el) => (
+          <S.NavList id={el.page} onClick={props.onClickNavMenu} key={el.page}>
+            {el.name}
+          </S.NavList>
+        ))}
       </S.NavWrapper>
     </S.Wrapper>
   );
