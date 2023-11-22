@@ -1,27 +1,148 @@
 {
-  "workbench.colorTheme": "Default Dark Modern",
-  "window.zoomLevel": 1,
-
-  // 탭 색상
-  "workbench.colorCustomizations": {
-    // 활성화
-    "editorIndentGuide.activeBackground1": "#ffff11",
-    "editorIndentGuide.activeBackground2": "#2cff2c",
-    "editorIndentGuide.activeBackground3": "#ff31ff",
-    "editorIndentGuide.activeBackground4": "#13e0ff",
-
-    // 비활성화
-    "editorIndentGuide.background1": "#ffff4060",
-    "editorIndentGuide.background2": "#7FFF7F60",
-    "editorIndentGuide.background3": "#FF7FFF60",
-    "editorIndentGuide.background4": "#4FECEC60",
-
-    // 커서 색상
-    "editorCursor.foreground": "#ff00d4"
-  },
+  // 테마
+  "workbench.colorTheme": "Default Dark+",
+  // 폰트
+  "editor.fontFamily": "Pretendard, Consolas, 'Courier New', monospace",
+  // 폰트 크기
+  "editor.fontSize": 14,
+  // 터미널 폰트
+  "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
+  // 줄간격
+  "editor.lineHeight": 1.4,
+  // 자간
+  "editor.letterSpacing": 1.2,
+  // 아이콘 테마
   "workbench.iconTheme": "material-icon-theme",
+  // 탭 띄어쓰기 간격
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "prettier.printWidth": 180
+  "prettier.printWidth": 180,
+
+  // 탭 색상
+  "workbench.colorCustomizations": {
+    // 탭 활성화
+    "editorIndentGuide.activeBackground1": "#ffe711",
+    "editorIndentGuide.activeBackground2": "#1eff00",
+    "editorIndentGuide.activeBackground3": "#ff31ff",
+    "editorIndentGuide.activeBackground4": "#a113ff",
+
+    // 탭 비활성화
+    "editorIndentGuide.background1": "#ececec2a",
+    "editorIndentGuide.background2": "#ececec2a",
+    "editorIndentGuide.background3": "#ececec2a",
+    "editorIndentGuide.background4": "#ececec2a",
+
+    // 커서 색상
+    "editorCursor.foreground": "#ff00d4"
+  }
+
+  // 에디터 색상
+  // "editor.tokenColorCustomizations": {
+  //   "textMateRules": [
+  //     // {
+  //     //   "name": "이름",
+  //     //   "scope": [""],
+  //     //   "settings": {
+  //     //     "foreground": "#e25a00",
+  //     //     "fontStyle": "italic"
+  //     //   }
+  //     // },
+  //     {
+  //       "name": "태그 열고 닫기",
+  //       "scope": [
+  //         "punctuation.definition.tag.begin.tsx",
+  //         "punctuation.definition.tag.end.tsx",
+  //         "entity.name.type.interface"
+  //       ],
+  //       "settings": {
+  //         "foreground": "#df40b7",
+  //       }
+  //     },
+  //     {
+  //       "name": "파라미터",
+  //       "scope": [
+  //         "variable.parameter",
+  //       ],
+  //       "settings": {
+  //         "foreground": "#da460b",
+  //       }
+  //     },
+  //     {
+  //       "name": "화살표함수",
+  //       "scope": [
+  //         "storage.type.function.arrow.tsx",
+  //       ],
+  //       "settings": {
+  //         "foreground": "#da0b0b",
+  //       }
+  //     },
+  //     {
+  //       "name": "함수 열고 닫기",
+  //       "scope": [
+  //         "punctuation.definition.block.tsx"
+  //       ],
+  //       "settings": {
+  //         "foreground": "#866a7f",
+  //       }
+  //     },
+  //     {
+  //       "name": "변수명, 함수명",
+  //       "scope": ["keyword.control.export.tsx", "keyword.control.default.tsx", "storage.type.function.tsx", "storage.type.tsx", "keyword.control.flow.tsx", "keyword.operator.expression.void.tsx", "keyword.operator.new.tsx"],
+  //       "settings": {
+  //         "fontStyle": "italic"
+  //       }
+  //     },
+  //     {
+  //       "name": "void",
+  //       "scope": ["keyword.operator.expression.void.tsx"],
+  //       "settings": {
+  //         "foreground": "#c00000"
+  //       }
+  //     },
+  //     {
+  //       "name": "import",
+  //       "scope": ["variable.other.readwrite.alias.tsx", "entity.name.tag.tsx"],
+  //       "settings": {
+  //         "foreground": "#0196bb"
+  //       }
+  //     },
+  //     {
+  //       "name": "HTML 태그",
+  //       "scope": ["entity.name.tag.tsx"],
+  //       "settings": {
+  //         "foreground": "#00682b"
+  //       }
+  //     },
+  //     {
+  //       "name": "함수 이름",
+  //       "scope": [
+  //       "storage.type.tsx",
+  //       "meta.var.expr.tsx",
+  //       "support.type",
+  //       "storage.type.function.js",
+  //       "storage.type.js"
+  //     ],
+  //       "settings": {
+  //         "foreground": "#e2008b"
+  //       }
+  //     },
+  //     {
+  //       "name": "함수 이름",
+  //       "scope": ["entity.name.function", "variable.other.readwrite.js"],
+  //       "settings": {
+  //         "foreground": "#1700e2",
+  //         "fontStyle": "italic"
+  //       }
+  //     },
+  //     {
+  //       "name": "주석",
+  //       "scope": ["comment.line.double-slash.tsx", "comment.block.documentation.tsx", "punctuation.definition.comment.json.comments", "comment.line.double-slash.js"],
+  //       "settings": {
+  //         "foreground": "#008000",
+  //         //"fontStyle": "italic"
+  //       }
+  //     }
+  //   ]
+  // }
 }
