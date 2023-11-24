@@ -7,7 +7,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 export default function App({ Component }: AppProps) {
   // graphql 세팅
   const client = new ApolloClient({
-    uri: "http://practice.codebootcamp.co.kr/graphql",
+    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
   });
 
