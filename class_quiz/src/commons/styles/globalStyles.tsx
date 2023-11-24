@@ -3,12 +3,12 @@ import { css } from "@emotion/react";
 export const globalStyles = css`
   * {
     box-sizing: border-box;
-    font-size: 30px;
+    font-size: 16px;
     font-family: "myfont";
   }
 
   @font-face {
     font-family: "myfont";
-    src: url("/fonts/scifibit.ttf");
+    src: url("/fonts/Orbit-Regular.ttf");
   }
 `;

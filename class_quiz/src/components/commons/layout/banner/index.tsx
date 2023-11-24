@@ -5,13 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function LayoutBanner() {
   const Wrapper = styled.div`
-    height: 300px;
-    background-color: #eabbc0;
+    height: 30px;
+    border: 1px solid #eabbc0;
     overflow: hidden;
   `;
 
   const MySlider = styled(Slider)`
-    width: 300px;
+    width: 30px;
     margin: 0 auto;
   `;
 
