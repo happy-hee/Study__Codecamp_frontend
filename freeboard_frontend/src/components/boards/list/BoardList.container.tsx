@@ -7,16 +7,24 @@ import { IQuery, IQueryFetchBoardsArgs } from "../../../commons/types/generated/
 
 export default function BoardList() {
   const router = useRouter();
-  const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS);
+  const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS);
 
   const onClickMoteToBoardDetail = (e: MouseEvent<HTMLDivElement>) => {
     // e.target이 태그인지 아닌지 확인
     if (e.target instanceof HTMLDivElement) router.push(`/boards/${e.currentTarget.id}`);
   };
 
+  // 게시글 작성
   const onClickMoteToBoardNew = () => {
     router.push(`/boards/new`);
   };
 
-  return <BoardListUI data={data} onClickMoteToBoardDetail={onClickMoteToBoardDetail} onClickMoteToBoardNew={onClickMoteToBoardNew} />;
+  return (
+    <BoardListUI
+      data={data}
+      refetch={refetch}
+      onClickMoteToBoardDetail={onClickMoteToBoardDetail}
+      onClickMoteToBoardNew={onClickMoteToBoardNew}
+    />
+  );
 }

@@ -5,12 +5,12 @@ export const Wrapper = styled.div`
   margin: 100px;
 `;
 
-export const TableTop = styled.div`
+export const ListTop = styled.div`
   border-top: 2px solid gray;
   margin-top: 20px;
 `;
 
-export const TableBottom = styled.div`
+export const List = styled.div`
   border-bottom: 2px solid gray;
 `;
 

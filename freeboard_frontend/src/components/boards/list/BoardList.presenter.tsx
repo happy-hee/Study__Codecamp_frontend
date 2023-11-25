@@ -1,19 +1,20 @@
 import * as S from "./BoardList.styles";
 import { getDate } from "../../../../src/commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
+import Pagination from "../../commons/pagination/Pagination.container";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <S.Wrapper>
-      <S.TableTop>
+      <S.ListTop>
         <S.Row>
           <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
           <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
           <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
           <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
         </S.Row>
-      </S.TableTop>
-      <S.TableBottom>
+      </S.ListTop>
+      <S.List>
         {props.data?.fetchBoards.map((el) => (
           <S.Row key={el._id}>
             {/* ID */}
@@ -28,8 +29,9 @@ export default function BoardListUI(props: IBoardListUIProps) {
             <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
           </S.Row>
         ))}
-      </S.TableBottom>
+      </S.List>
       <S.Footer>
+        <Pagination refetch={props.refetch} />
         <S.Button onClick={props.onClickMoteToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
