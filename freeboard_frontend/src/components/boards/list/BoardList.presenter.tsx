@@ -1,7 +1,7 @@
 import * as S from "./BoardList.styles";
 import { getDate } from "../../../../src/commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
-import Pagination from "../../commons/pagination/Pagination.container";
+import Pagination01 from "../../commons/pagination/01/Pagination01.container";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -31,7 +31,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
         ))}
       </S.List>
       <S.Footer>
-        <Pagination refetch={props.refetch} />
+        <Pagination01 refetch={props.refetch} count={props.count} />
         <S.Button onClick={props.onClickMoteToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기

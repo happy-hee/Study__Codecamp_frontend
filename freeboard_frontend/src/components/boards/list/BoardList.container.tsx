@@ -1,17 +1,20 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS } from "./BoardList.queries";
+import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
 import BoardListUI from "./BoardList.presenter";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
-import { IQuery, IQueryFetchBoardsArgs } from "../../../commons/types/generated/types";
+import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from "../../../commons/types/generated/types";
 
 export default function BoardList() {
   const router = useRouter();
   const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS);
+  // 게시글 갯수
+  const { data: dataBoardsCount } = useQuery<Pick<IQuery, "fetchBoardsCount">, IQueryFetchBoardsCountArgs>(
+    FETCH_BOARDS_COUNT,
+  );
 
   const onClickMoteToBoardDetail = (e: MouseEvent<HTMLDivElement>) => {
-    // e.target이 태그인지 아닌지 확인
-    if (e.target instanceof HTMLDivElement) router.push(`/boards/${e.currentTarget.id}`);
+    if (e.currentTarget) router.push(`/boards/${e.currentTarget.id}`);
   };
 
   // 게시글 작성
@@ -25,6 +28,7 @@ export default function BoardList() {
       refetch={refetch}
       onClickMoteToBoardDetail={onClickMoteToBoardDetail}
       onClickMoteToBoardNew={onClickMoteToBoardNew}
+      count={dataBoardsCount?.fetchBoardsCount}
     />
   );
 }

@@ -52,15 +52,18 @@ export const ColumnTitle = styled.div`
 `;
 
 export const Footer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding-top: 50px;
 `;
 
 export const PencilIcon = styled.img``;
 
 export const Button = styled.button`
+  position: absolute;
+  right: 0;
   width: 171px;
   height: 52px;
   background-color: white;
