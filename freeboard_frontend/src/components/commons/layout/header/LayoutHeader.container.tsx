@@ -5,17 +5,17 @@ export default function LayoutHeader() {
   const router = useRouter();
 
   const onClickLogo = () => {
-    router.push("/boards");
+    void router.push("/boards");
   };
 
   const onClickMoveToSignIn = () => {
     console.log("로그인");
-    router.push("/signin");
+    void router.push("/signin");
   };
 
   const onClickMoveToSignUp = () => {
     console.log("회원가입");
-    router.push("/signup");
+    void router.push("/signup");
   };
 
   return (

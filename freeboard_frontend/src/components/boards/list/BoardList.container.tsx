@@ -13,13 +13,13 @@ export default function BoardList() {
     FETCH_BOARDS_COUNT,
   );
 
-  const onClickMoteToBoardDetail = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.currentTarget) router.push(`/boards/${e.currentTarget.id}`);
+  const onClickMoteToBoardDetail = (e: MouseEvent<HTMLDivElement>): void => {
+    if (e.currentTarget) void router.push(`/boards/${e.currentTarget.id}`);
   };
 
   // 게시글 작성
-  const onClickMoteToBoardNew = () => {
-    router.push(`/boards/new`);
+  const onClickMoteToBoardNew = (): void => {
+    void router.push(`/boards/new`);
   };
 
   return (

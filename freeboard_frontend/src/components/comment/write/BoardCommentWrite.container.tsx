@@ -86,7 +86,7 @@ export default function BoardCommentNew() {
         });
 
         // 게시글 상세페이지로 이동
-        router.push(`/boards/${router.query.boardId}`);
+        void router.push(`/boards/${router.query.boardId}`);
       } catch (error) {
         if (error instanceof Error) {
           Modal.error({

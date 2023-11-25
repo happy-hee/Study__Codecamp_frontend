@@ -5,7 +5,7 @@ import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import ApolloSetting from "../src/components/commons/apollo";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: AppProps): JSX.Element {
   return (
     <div>
       {/* // 아래 컴포넌트에서 GraphQL을 사용할 수 있도록 감싸줌 */}

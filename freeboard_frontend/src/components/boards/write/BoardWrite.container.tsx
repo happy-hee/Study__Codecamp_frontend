@@ -18,22 +18,22 @@ export default function BoardNew(props: IBoardWriteProps) {
 
   // 데이터 State
   const [writer, setWriter] = useState(""); // 이름
-  const [password, setPassword] = useState(""); //비밀번호
+  const [password, setPassword] = useState(""); // 비밀번호
   const [title, setTitle] = useState(""); // 제목
-  const [contents, setContents] = useState(""); //내용
-  const [youtubeUrl, setYoutubeUrl] = useState(""); //유튜브 링크
+  const [contents, setContents] = useState(""); // 내용
+  const [youtubeUrl, setYoutubeUrl] = useState(""); // 유튜브 링크
   const [isOpen, setIsOpen] = useState(false);
-  const [address, setAddress] = useState(""); //주소1
-  const [addressDetail, setAddressDetail] = useState(""); //주소2
-  const [zipcode, setZipcode] = useState(""); //우편번호
+  const [address, setAddress] = useState(""); // 주소1
+  const [addressDetail, setAddressDetail] = useState(""); // 주소2
+  const [zipcode, setZipcode] = useState(""); // 우편번호
   const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD); // 게시글 등록 Mutation
   const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
   // 에러메세지
   const [errorWriter, setErrorWriter] = useState(""); // 이름
-  const [errorPassword, setErrorPassword] = useState(""); //비밀번호
+  const [errorPassword, setErrorPassword] = useState(""); // 비밀번호
   const [errorTitle, setErrorTitle] = useState(""); // 제목
-  const [errorContents, setErrorContents] = useState(""); //내용
+  const [errorContents, setErrorContents] = useState(""); // 내용
   const [isActive, setIsActive] = useState(false);
 
   // 데이터 저장
@@ -50,7 +50,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     }
   }
   function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
-    //비밀번호
+    // 비밀번호
     setPassword(event.target.value);
     if (event.target.value && writer && title && contents) {
       setIsActive(true);
@@ -62,7 +62,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     }
   }
   function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
-    //제목
+    // 제목
     setTitle(event.target.value);
     if (event.target.value && writer && password && contents) {
       setIsActive(true);
@@ -74,7 +74,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     }
   }
   function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
-    //내용
+    // 내용
     setContents(event.target.value);
     if (event.target.value && writer && password && title) {
       setIsActive(true);
@@ -150,7 +150,11 @@ export default function BoardNew(props: IBoardWriteProps) {
           content: "등록되었습니다.",
         });
         // 상세페이지로 이동
-        router.push(`/boards/${result.data?.createBoard._id}`);
+        if (result.data?.createBoard._id === undefined) {
+          alert("요청에 문제가 있습니다.");
+          return;
+        }
+        void router.push(`/boards/${result.data?.createBoard._id}`);
       } catch (error) {
         if (typeof error === "string") {
           Modal.error({
@@ -175,7 +179,7 @@ export default function BoardNew(props: IBoardWriteProps) {
     // 2. 값을 반환 (return 뒤에 작성한 값)
     // => 아래쪽이 실행이 안되도록 해준다.
 
-    //검증
+    // 검증
     if (!title && !contents && !youtubeUrl && !address && !addressDetail && !zipcode) {
       Modal.warning({
         content: "수정한 내용이 없습니다.",
@@ -220,7 +224,11 @@ export default function BoardNew(props: IBoardWriteProps) {
       });
 
       // 상세페이지로 이동
-      router.push(`/boards/${result.data?.updateBoard._id}`);
+      if (result.data?.updateBoard._id === undefined) {
+        alert("요청에 문제가 있습니다.");
+        return;
+      }
+      void router.push(`/boards/${result.data?.updateBoard._id}`);
     } catch (error) {
       // instance란: 원본으로부터 만들어진 것 (error는 Error의 instance 이다)
       if (error instanceof Error) {

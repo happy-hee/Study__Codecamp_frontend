@@ -22,8 +22,13 @@ export default function BoardDetail() {
   });
 
   // 수정하기 페이지로 이동
-  const onClickMoveEdit = () => {
-    router.push(`/boards/${router.query.boardId}/edit`);
+  const onClickMoveEdit = (): void => {
+    // string이 아닐 경우 대비 얼럿
+    if (typeof router.query.boardId !== "string") {
+      alert("시스템에 문제가 있습니다.");
+      return;
+    }
+    void router.push(`/boards/${router.query.boardId}/edit`);
   };
 
   const onClickLike = async () => {
@@ -35,6 +40,13 @@ export default function BoardDetail() {
   };
 
   return (
-    <BoardDetailUI data={data} onClickMoveEdit={onClickMoveEdit} onClickLike={onClickLike} onClickDislike={onClickDislike} likeCount={likeCount} dislikeCount={dislikeCount} />
+    <BoardDetailUI
+      data={data}
+      onClickMoveEdit={onClickMoveEdit}
+      onClickLike={onClickLike}
+      onClickDislike={onClickDislike}
+      likeCount={likeCount}
+      dislikeCount={dislikeCount}
+    />
   );
 }
