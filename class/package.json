@@ -36,8 +36,20 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "husky": "4",
+    "lint-staged": "^15.1.0",
     "prettier": "3.0.3",
     "typescript": "*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "npx eslint ."
+    ]
   },
   "resolutions": {
     "@types/react": "17.0.2"
