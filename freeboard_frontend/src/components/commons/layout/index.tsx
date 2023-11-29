@@ -8,11 +8,11 @@ interface ILayoutProps {
 
 export default function Layout(props: ILayoutProps) {
   return (
-    <div>
+    <>
       <LayoutHeader />
       <LayoutBanner />
       <LayoutNavigation />
       <div>{props.children}</div>
-    </div>
+    </>
   );
 }

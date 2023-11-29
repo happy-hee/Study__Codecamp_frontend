@@ -99,6 +99,7 @@ export const globalStyles = css`
     font-family: "NotoSans", sans-serif;
     font-weight: 400;
     font-size: 16px;
+    margin-bottom: 300px;
   }
 
   a {

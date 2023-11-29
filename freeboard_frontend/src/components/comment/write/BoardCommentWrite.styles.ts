@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
+import { IBoardCommentButtonProps } from "./BoardCommentWrite.types";
 
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
-  padding-top: 40px;
-  border-top: 1px solid #bdbdbd;
+  padding-top: 50px;
+  border-top: 1px solid #eaeaea;
 `;
 export const Title = styled.div`
   padding-left: 38px;
@@ -68,8 +69,8 @@ export const TextCount = styled.div`
 export const BoardCommentButton = styled.button`
   height: 52px;
   padding: 14px 16px;
-  background-color: #000;
-  color: #fff;
+  background-color: ${(props: IBoardCommentButtonProps) => (props.isEdit ? "#FFD600" : "#000")};
+  color: ${(props: IBoardCommentButtonProps) => (props.isEdit ? "#000" : "#fff")};
   border: 0;
 `;
 
