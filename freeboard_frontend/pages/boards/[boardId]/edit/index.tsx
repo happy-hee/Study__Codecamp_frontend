@@ -2,7 +2,7 @@
  * 게시글 수정 페이지
  */
 import { useRouter } from "next/router";
-import BoardWrite from "../../../../src/components/boards/write/BoardWrite.container";
+import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
 import { gql, useQuery } from "@apollo/client";
 import { IQuery, IQueryFetchBoardArgs } from "../../../../src/commons/types/generated/types";
 
