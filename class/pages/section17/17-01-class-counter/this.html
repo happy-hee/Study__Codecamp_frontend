@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this의 이해</title>
+    <script>
+      class ClassCountPage {
+        count = 10;
+
+        // 해결 방법 2. 화살표 함수로 변경하는 방법
+        onClickCountUp = () => {
+          // onClickCountUp() {
+
+          /**
+           * [STUDY MEMO]
+           * 문제 : undefined 가 나오는 이유
+           * onClickCountUp 의 실행 주체가 button 으로 바뀌었기 때문에
+           * 여기서의 this는 ClassCountPage가 아니라 button 을 가리키게 된다.
+           * 그러므로 undefined 가 나오게 되는 것
+           */
+          // console.log("현재 카운트  :  " + this.count); // undefined!!
+
+          // 해결 방법 1. 아래 button.addEventListener 에서 bind(this) 를 주고 해결
+          console.log("현재 카운트  :  " + this.count); // 현재 카운트 : 10
+        };
+
+        render() {
+          const button = document.createElement("button");
+          button.innerText = "카운트 올리기!";
+          // button.addEventListener("click", this.onClickCountUp); // 여기서의 this는 ClassCountPage를 가리킴
+
+          // 해결 방법 1.
+          button.addEventListener("click", this.onClickCountUp.bind(this)); // 여기 있는 this를 onClickCounUp에 연결 (.bind)
+          document.body.appendChild(button);
+        }
+      }
+
+      window.onload = () => {
+        const counter = new ClassCountPage();
+        counter.render();
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
