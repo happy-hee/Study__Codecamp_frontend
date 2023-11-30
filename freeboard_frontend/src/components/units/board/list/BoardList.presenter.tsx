@@ -21,7 +21,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
             <S.ColumnBasic>{String(el._id).slice(-4).toUpperCase()}</S.ColumnBasic>
             {/* 제목 */}
             <S.ColumnTitle id={el._id} onClick={props.onClickMoteToBoardDetail}>
-              <a href="">{el.title}</a>
+              {el.title}
             </S.ColumnTitle>
             {/* 작성자 */}
             <S.ColumnBasic>{el.writer}</S.ColumnBasic>
