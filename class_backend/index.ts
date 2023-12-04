@@ -1,4 +1,7 @@
 /**
+ * [학습] 18-Node.js
+ */
+/**
  * [STUDY MEMO]
  * Typescript를 사용하기 위해 해당 폴더에서 typescript를 설치
  * 1. package.json 사용하는 것을 권장 -> yarn init 을 하면 파일 생성됨
@@ -22,6 +25,37 @@
  * dependencies : 실행시 필요
  */
 
+/**
+ * [학습] 18-graphql 서버프로그램
+ */
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+
+// 1)
+// API-DOCS 만들기
+const typeDefs = `#graphql
+  type Query {
+    hello: String
+  }
+`;
+
+// 2)
+// API 만들기
+const resolvers = {
+  Query: {
+    hello: () => "world",
+  },
+};
+
+// 3)
+const server = new ApolloServer({
+  typeDefs, // 위에 있는 typeDefs
+  resolvers, // 위에 있는 resolvers
+});
+
+/**
+ * [학습] 18-ORM과 DB연동
+ */
 // 접속해서 연결 (방법은 ORM docs에 잘 나와있음)
 import { DataSource } from "typeorm";
 import { Board } from "./Board.postgres";
@@ -42,6 +76,12 @@ const AppDataSource = new DataSource({
 AppDataSource.initialize()
   .then(() => {
     console.log("DB 접속 성공!!!");
+
+    // 4)
+    // startStandaloneServer : 서버를 실행
+    startStandaloneServer(server).then(() => {
+      console.log("서버 실행!!!");
+    });
   })
   .catch((error) => {
     console.log("DB 접속 실패!!!");
