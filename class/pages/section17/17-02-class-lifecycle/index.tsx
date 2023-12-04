@@ -1,3 +1,6 @@
+/**
+ * 클래스 컴포넌트
+ */
 import { Component } from "react";
 import Router from "next/router";
 
@@ -46,7 +49,7 @@ export default class ClassCounterPage extends Component {
   };
 
   onClickMove = (): void => {
-    Router.push("/");
+    void Router.push("/");
   };
 
   render() {
