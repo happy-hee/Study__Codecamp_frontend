@@ -22,6 +22,28 @@
  * dependencies : 실행시 필요
  */
 
-const qqq: string = "타입스크립트 페이지";
+// 접속해서 연결 (방법은 ORM docs에 잘 나와있음)
+import { DataSource } from "typeorm";
+import { Board } from "./Board.postgres";
 
-console.log(qqq);
+const AppDataSource = new DataSource({
+  type: "postgres",
+  host: "34.64.124.242", // 데이터베이스 설치된 컴퓨터 IP 주소
+  port: 5001, //데이터베이스 설치된 컴퓨터 포트
+  username: "postgres",
+  password: "postgres2023",
+  database: "postgres", // 데이터베이스 타입
+  entities: [Board], // 내가 만든 테이블
+  synchronize: true, // 내가 만든 보드 테이블과 데이터베이스의 테이블과 실제로 똑같이 만들어 달라는 요청
+  logging: true, //과정 보여주기
+});
+
+// initialize: 실행 .then: 성공시
+AppDataSource.initialize()
+  .then(() => {
+    console.log("DB 접속 성공!!!");
+  })
+  .catch((error) => {
+    console.log("DB 접속 실패!!!");
+    console.log("원인 : " + error);
+  });
