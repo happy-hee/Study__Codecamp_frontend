@@ -23,7 +23,11 @@ export default function Myfirebase() {
    * 등록하기
    */
   const onClickSubmit = async (): Promise<void> => {
+    // firebase 앱 정보를 가지고 와서, 게시판 컬렉션을 조회
     const board = collection(getFirestore(firebaseApp), "board");
+
+    // 게시판 컬렉션에서 문서 추가
+    // addDoc(컬렉션, {키 / value})
     await addDoc(board, {
       writer,
       title,
@@ -37,8 +41,13 @@ export default function Myfirebase() {
    * 조회하기
    */
   const onClickFetch = async (): Promise<void> => {
+    // firebase 앱 정보를 가지고 와서, 게시판 컬렉션을 조회
     const board = collection(getFirestore(firebaseApp), "board");
+
+    // 조회해온 데이터를 변수에 담음
     const result = await getDocs(board);
+
+    // board 컬렉션의 데이터들을 조회
     const datas = result.docs.map((el) => el.data());
     setDataBoards(datas);
 
