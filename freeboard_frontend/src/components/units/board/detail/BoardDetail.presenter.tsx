@@ -29,7 +29,18 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
-          <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+          <S.Contents>
+            <img
+              src={
+                props.data?.fetchBoard?.images
+                  ? `https://storage.googleapis.com/${props.data?.fetchBoard?.images[0]}`
+                  : ""
+              }
+            />
+
+            {/* props.data?.f {etchBoard?.images} */}
+            {props.data?.fetchBoard?.contents}
+          </S.Contents>
           {props.data?.fetchBoard.youtubeUrl !== "" && ( // 유튜브 영상이 있을 경우만 표시
             <S.Youtube>
               <S.VideoPlayer

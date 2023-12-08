@@ -9,6 +9,7 @@ export const CREATE_BOARD = gql`
       title
       contents
       youtubeUrl
+      images
       boardAddress {
         address
         addressDetail
@@ -27,11 +28,21 @@ export const UPDATE_BOARD = gql`
       title
       contents
       youtubeUrl
+      images
       boardAddress {
         address
         addressDetail
         zipcode
       }
+    }
+  }
+`;
+
+// 이미지 등록
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      url
     }
   }
 `;

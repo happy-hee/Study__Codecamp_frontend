@@ -97,13 +97,17 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </S.InputWrapper>
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
+          <S.UploadButton onClick={props.onClickUploadImage}>+</S.UploadButton>
+          <S.UploadButton onClick={props.onClickUploadImage}>+</S.UploadButton>
+          <S.UploadButton onClick={props.onClickUploadImage}>+</S.UploadButton>
+          <input style={{ display: "none" }} type="file" onChange={props.onChangeFile} ref={props.fileRef} />
+          {/* 이미지 */}
+          <img src={`https://storage.googleapis.com/${props.imageUrl[0]}`} alt="" />
         </S.ImageWrapper>
         <S.OptionWrapper>
           <S.Label>메인설정</S.Label>
           <S.RadioButton type="radio" id="youtube" name="radio-button" />
+          {/* htmlFor: label 태그의 for 속성 */}
           <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
           <S.RadioButton type="radio" id="image" name="radio-button" />
           <S.RadioLabel htmlFor="image">사진</S.RadioLabel>

@@ -25,12 +25,16 @@ export interface IBoardWriteUIProps {
   isOpen: boolean;
   onClickAddressModal: () => void;
   onCompleteAddressSearch: (data: Address) => void;
+  onChangeFile: (e: ChangeEvent<HTMLInputElement>) => void;
   address: string;
   zipcode: string;
   errorWriter: string;
   errorPassword: string;
   errorTitle: string;
   errorContents: string;
+  imageUrl: any[];
+  onClickUploadImage: () => void;
+  fileRef: any;
 }
 
 export interface ISubmitButtonProps {

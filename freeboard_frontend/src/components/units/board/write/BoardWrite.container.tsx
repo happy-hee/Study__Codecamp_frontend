@@ -1,17 +1,19 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { ChangeEvent, useRef, useState } from "react";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { IBoardWriteProps } from "./BoardWrite.types";
 import {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IMutationUploadFileArgs,
   IUpdateBoardInput,
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
 import { Address } from "react-daum-postcode";
+import { checkValidationFile } from "../../../../commons/libraries/validationFile";
 
 export default function BoardNew(props: IBoardWriteProps) {
   const router = useRouter();
@@ -28,6 +30,9 @@ export default function BoardNew(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState(""); // 우편번호
   const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD); // 게시글 등록 Mutation
   const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
+  const [imageUrl, setImageUrl] = useState<string[]>([]); // 이미지
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploadFile] = useMutation<Pick<IMutation, "uploadFile">, IMutationUploadFileArgs>(UPLOAD_FILE);
 
   // 에러메세지
   const [errorWriter, setErrorWriter] = useState(""); // 이름
@@ -103,8 +108,27 @@ export default function BoardNew(props: IBoardWriteProps) {
     setIsOpen((prev) => !prev);
   };
 
+  // 사진 첨부
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    const file = event.target.files?.[0];
+
+    const isValid = checkValidationFile(file);
+    if (!isValid) return;
+
+    const result = await uploadFile({
+      variables: { file },
+    });
+
+    const imageList = result.data?.uploadFile.url ?? "";
+    setImageUrl((prev) => [...prev, imageList]);
+  };
+
   const onClickAddressModal = (): void => {
     setIsOpen((prev) => !prev);
+  };
+
+  const onClickUploadImage = (): void => {
+    fileRef.current?.click();
   };
 
   // 게시글 등록
@@ -135,6 +159,7 @@ export default function BoardNew(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl,
+              images: imageUrl,
               boardAddress: {
                 zipcode,
                 address,
@@ -143,8 +168,6 @@ export default function BoardNew(props: IBoardWriteProps) {
             },
           },
         });
-
-        console.log(result);
 
         Modal.success({
           content: "등록되었습니다.",
@@ -255,12 +278,16 @@ export default function BoardNew(props: IBoardWriteProps) {
       onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressModal={onClickAddressModal}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFile={onChangeFile}
       data={props.data}
+      imageUrl={imageUrl}
       isActive={isActive}
       isEdit={props.isEdit}
       address={address}
       zipcode={zipcode}
       isOpen={isOpen}
+      onClickUploadImage={onClickUploadImage}
+      fileRef={fileRef}
     />
   );
 }
